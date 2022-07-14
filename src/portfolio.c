@@ -1,4 +1,5 @@
 #include "assets/arrow.c"
+#include "assets/google_g.c"
 #include "assets/home_header.c"
 #include "assets/not.c"
 #include "assets/phrases.c"
@@ -18,6 +19,8 @@ void main() {
   // Load and draw "not" text
   set_bkg_data(90, 2, not_data);
   set_bkg_tiles(0, 16, 2, 1, not_tiles);
+  // Load Google G
+  set_bkg_1bpp_data(92, 1, google_g_data);
   // Start
   PRINT_TEXT(8, 13, start);
   // Copyright
