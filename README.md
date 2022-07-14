@@ -2,6 +2,10 @@
 
 My portfolio, implemented as a retro game.
 
+<p align="center">
+  <img width="600" height="540" src="images/gb-preview.gif">
+</p>
+
 ## What is this?
 
 This is a reimplementation of [my portfolio](https://github.com/Dabolus/portfolio)
