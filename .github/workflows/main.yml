@@ -13,7 +13,7 @@ jobs:
           wget https://github.com/gbdk-2020/gbdk-2020/releases/latest/download/gbdk-linux64.tar.gz
           tar -xzf gbdk-linux64.tar.gz
           rm gbdk-linux64.tar.gz
-          mv gbdk-linux64 ~/gbdk
+          mv gbdk ~
       - name: Build ROMs
         run: |
           make gb
