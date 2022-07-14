@@ -1,0 +1,24 @@
+name: Build ROMs
+on: [push]
+
+jobs:
+  build-roms:
+    name: Build ROMs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install GBDK-2020
+        run: |
+          wget https://github.com/gbdk-2020/gbdk-2020/releases/latest/download/gbdk-linux64.tar.gz
+          tar -xzf gbdk-linux64.tar.gz
+          rm gbdk-linux64.tar.gz
+          mv gbdk-linux64 ~/gbdk
+      - name: Build ROMs
+        run: |
+          make gb
+      - name: Upload ROMs to GitHub Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ROMs
+          path: build
