@@ -76,6 +76,13 @@ void main() {
       ++current_text_index;
     }
 
+    switch (joypad()) {
+    case J_SELECT:
+      // Reverse the palette bits
+      BGP_REG = ~BGP_REG;
+      break;
+    }
+
     fastdelay(9);
   }
 }
