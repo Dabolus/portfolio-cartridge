@@ -5,6 +5,7 @@
 #include "assets/phrases.c"
 #include "font_early_game_boy.h"
 #include "helpers/text.c"
+#include "helpers/utils.c"
 #include <gbdk/platform.h>
 
 void main() {
