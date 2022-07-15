@@ -42,39 +42,52 @@ void main() {
   uint8_t current_text_y = 0;
   uint8_t current_text_index = 0;
   uint8_t current_text_id = 0;
+  uint8_t current_loop_count = 0;
 
   while (1) {
-    // We reached the end of the phrase
-    if (phrases[current_text_id][current_text_index] == 0xFF) {
-      fastdelay(90);
-      for (uint8_t i = 0; i < TYPEWRITTEN_TEXT_MAX_LENGTH; ++i) {
-        for (uint8_t j = 0; j <= current_text_y; ++j) {
-          set_bkg_tile_xy(typewritten_text_start_x + i,
-                          typewritten_text_start_y + j, 0x00);
+    // Only perform typewritten text animation every 3 loops
+    if (current_loop_count % 3 == 0) {
+      // We reached the end of the phrase
+      if (phrases[current_text_id][current_text_index] == 0xFF) {
+        // Wait for 90 loops before starting the next phrase
+        // TODO: this code needs to be refactored (no `continue` pls)
+        // and text should be deleted character per character instead
+        // of simply disappearing
+        if (current_loop_count % 90 == 0) {
+          current_loop_count = 0;
+        } else {
+          ++current_loop_count;
+          continue;
         }
+        for (uint8_t i = 0; i < TYPEWRITTEN_TEXT_MAX_LENGTH; ++i) {
+          for (uint8_t j = 0; j <= current_text_y; ++j) {
+            set_bkg_tile_xy(typewritten_text_start_x + i,
+                            typewritten_text_start_y + j, 0x00);
+          }
+        }
+        ++current_text_id;
+        if (current_text_id >= ARRAY_LEN(phrases)) {
+          current_text_id = 0;
+        }
+        current_text_x = 0;
+        current_text_y = 0;
+        current_text_index = 0;
       }
-      ++current_text_id;
-      if (current_text_id >= ARRAY_LEN(phrases)) {
-        current_text_id = 0;
-      }
-      current_text_x = 0;
-      current_text_y = 0;
-      current_text_index = 0;
-    }
 
-    set_bkg_tile_xy(typewritten_text_start_x + current_text_x,
-                    typewritten_text_start_y + current_text_y,
-                    phrases[current_text_id][current_text_index]);
-    // Skip all the spaces
-    do {
-      ++current_text_x;
-      ++current_text_index;
-    } while (phrases[current_text_id][current_text_index] == 0x00);
-    // Skip all the newlines
-    while (phrases[current_text_id][current_text_index] == 0xFE) {
-      current_text_x = 0;
-      ++current_text_y;
-      ++current_text_index;
+      set_bkg_tile_xy(typewritten_text_start_x + current_text_x,
+                      typewritten_text_start_y + current_text_y,
+                      phrases[current_text_id][current_text_index]);
+      // Skip all the spaces
+      do {
+        ++current_text_x;
+        ++current_text_index;
+      } while (phrases[current_text_id][current_text_index] == 0x00);
+      // Skip all the newlines
+      while (phrases[current_text_id][current_text_index] == 0xFE) {
+        current_text_x = 0;
+        ++current_text_y;
+        ++current_text_index;
+      }
     }
 
     switch (joypad()) {
@@ -84,6 +97,7 @@ void main() {
       break;
     }
 
-    fastdelay(9);
+    fastdelay(3);
+    ++current_loop_count;
   }
 }
