@@ -16,7 +16,7 @@ jobs:
           mv gbdk ~
       - name: Build ROMs
         run: |
-          make gb
+          make
       - name: Upload ROMs to GitHub Artifacts
         uses: actions/upload-artifact@v3
         with:
