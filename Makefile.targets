@@ -10,7 +10,7 @@ endif
 build-target: $(BINS)
 
 watch-target:
-	@fswatch -o $(SRCDIR) | xargs -n1 -I{} ${MAKE} build-target
+	${MAKE} build-target && fswatch -o $(SRCDIR) | xargs -n1 -I{} ${MAKE} build-target
 
 clean-target:
 	rm -rf $(OBJDIR)
