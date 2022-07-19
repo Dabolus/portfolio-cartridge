@@ -43,47 +43,74 @@ void main() {
   uint8_t current_text_index = 0;
   uint8_t current_text_id = 0;
   uint8_t current_loop_count = 0;
+  BOOLEAN is_deleting = FALSE;
 
   while (1) {
-    // Only perform typewritten text animation every 3 loops
-    if (current_loop_count % 3 == 0) {
-      // We reached the end of the phrase
-      if (phrases[current_text_id][current_text_index] == 0xFF) {
-        // Wait for 90 loops before starting the next phrase
-        // TODO: this code needs to be refactored (no `continue` pls)
-        // and text should be deleted character per character instead
-        // of simply disappearing
-        if (current_loop_count % 90 == 0) {
-          current_loop_count = 0;
-        } else {
-          ++current_loop_count;
-          continue;
+    // We reached the start of the phrase
+    if (current_text_index == 0) {
+      is_deleting = FALSE;
+      current_loop_count = 0;
+    }
+    // We reached the end of the phrase
+    else if (phrases[current_text_id][current_text_index] == 0xFF) {
+      is_deleting = TRUE;
+      current_loop_count = 0;
+      --current_text_x;
+      --current_text_index;
+    }
+
+    if (is_deleting) {
+      if (current_loop_count >= 30) {
+        // Delete the character at the current position
+        set_bkg_tile_xy(typewritten_text_start_x + current_text_x,
+                        typewritten_text_start_y + current_text_y, 0x00);
+        // Delete any spaces in the same loop
+        do {
+          --current_text_x;
+          --current_text_index;
+          set_bkg_tile_xy(typewritten_text_start_x + current_text_x,
+                          typewritten_text_start_y + current_text_y, 0x00);
+        } while (phrases[current_text_id][current_text_index] == 0x00);
+        // Skip newlines
+        if (phrases[current_text_id][current_text_index] == 0xFE) {
+          // Detect the end of the next line and set our X to be at the end of
+          // it
+          current_text_x = 0;
+          do {
+            ++current_text_x;
+          } while (
+              phrases[current_text_id][current_text_index - current_text_x] !=
+                  0xFE &&
+              phrases[current_text_id][current_text_index - current_text_x] !=
+                  0xFF &&
+              current_text_index - current_text_x > 0);
+          --current_text_y;
+          --current_text_index;
         }
-        for (uint8_t i = 0; i < TYPEWRITTEN_TEXT_MAX_LENGTH; ++i) {
-          for (uint8_t j = 0; j <= current_text_y; ++j) {
-            set_bkg_tile_xy(typewritten_text_start_x + i,
-                            typewritten_text_start_y + j, 0x00);
+
+        if (current_text_index == 0) {
+          ++current_text_id;
+          if (current_text_id >= ARRAY_LEN(phrases)) {
+            current_text_id = 0;
           }
+          current_text_x = 0;
+          current_text_y = 0;
         }
-        ++current_text_id;
-        if (current_text_id >= ARRAY_LEN(phrases)) {
-          current_text_id = 0;
-        }
-        current_text_x = 0;
-        current_text_y = 0;
-        current_text_index = 0;
       }
 
+    }
+    // Only perform typewritten text animation every 3 loops
+    else if (current_loop_count % 3 == 0) {
       set_bkg_tile_xy(typewritten_text_start_x + current_text_x,
                       typewritten_text_start_y + current_text_y,
                       phrases[current_text_id][current_text_index]);
-      // Skip all the spaces
+      // Skip spaces
       do {
         ++current_text_x;
         ++current_text_index;
       } while (phrases[current_text_id][current_text_index] == 0x00);
-      // Skip all the newlines
-      while (phrases[current_text_id][current_text_index] == 0xFE) {
+      // Skip newlines
+      if (phrases[current_text_id][current_text_index] == 0xFE) {
         current_text_x = 0;
         ++current_text_y;
         ++current_text_index;
