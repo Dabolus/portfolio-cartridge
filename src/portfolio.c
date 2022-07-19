@@ -44,6 +44,7 @@ void main() {
   uint8_t current_text_id = 0;
   uint8_t current_loop_count = 0;
   BOOLEAN is_deleting = FALSE;
+  BOOLEAN is_select_pressed = FALSE;
 
   while (1) {
     // We reached the start of the phrase
@@ -117,11 +118,16 @@ void main() {
       }
     }
 
-    switch (joypad()) {
-    case J_SELECT:
+    uint8_t keys = joypad();
+
+    if (!is_select_pressed && (keys & J_SELECT)) {
       // Reverse the palette bits
       BGP_REG = ~BGP_REG;
-      break;
+      is_select_pressed = TRUE;
+    }
+
+    if (is_select_pressed && !(keys & J_SELECT)) {
+      is_select_pressed = FALSE;
     }
 
     fastdelay(3);
