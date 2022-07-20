@@ -26,7 +26,7 @@ void main() {
       is_select_pressed = FALSE;
     }
 
-    if (keys & (J_START | J_A)) {
+    if (current_page == HOME_HEADER && (keys & (J_START | J_A))) {
       set_page(HOME_MENU);
     }
 
