@@ -26,6 +26,7 @@ void init_page(enum Page page) {
 
 void set_page(enum Page page) {
   fadeout(15);
+  clearscreen();
   init_page(page);
   fadein(15);
 }
