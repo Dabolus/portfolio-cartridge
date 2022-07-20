@@ -26,13 +26,12 @@ void main() {
       is_select_pressed = FALSE;
     }
 
-    if (current_page == HOME_HEADER && (keys & (J_START | J_A))) {
-      set_page(HOME_MENU);
-    }
-
     switch (current_page) {
     case HOME_HEADER:
       home_header_loop(&current_loop_count);
+      if (keys & (J_START | J_A)) {
+        set_page(HOME_MENU);
+      }
       break;
     case HOME_MENU: {
       home_menu_loop(&current_loop_count);
