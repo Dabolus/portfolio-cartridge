@@ -1,5 +1,10 @@
 name: Build ROMs
-on: [push]
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'
 
 jobs:
   build-roms:
@@ -22,3 +27,16 @@ jobs:
         with:
           name: ROMs
           path: build
+      - name: Publish pre-release
+        uses: softprops/action-gh-release@v1
+        # Only publish pre-release if the CI is running for a push of a branch and not for a tag
+        if: startsWith(github.ref, 'refs/heads/')
+        with:
+          prerelease: true
+          generate_release_notes: true
+          name: 'Build #${github.run_id}-${github.run_attempt}'
+          files: |
+            build/gb/portfolio.gb
+            build/gbc/portfolio.gbc
+            build/pocket/portfolio.pocket
+            build/duck/portfolio.duck
