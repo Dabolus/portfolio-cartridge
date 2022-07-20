@@ -35,6 +35,9 @@ void main() {
       break;
     case HOME_MENU: {
       home_menu_loop(&current_loop_count);
+      if (keys & J_B) {
+        set_page(HOME_HEADER);
+      }
       break;
     }
     }
