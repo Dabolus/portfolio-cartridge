@@ -32,7 +32,7 @@ jobs:
         # Only publish pre-release if the CI is running for a push of a branch and not for a tag
         if: startsWith(github.ref, 'refs/heads/')
         run: |
-          echo "::set-output name=prerelease_tag::nightly-$(date +"%Y-%m-%dT%H%M")"
+          echo "::set-output name=prerelease_id::$(date +"%Y-%m-%dT%H%M")"
       - name: Publish pre-release
         uses: softprops/action-gh-release@v1
         env:
@@ -40,8 +40,8 @@ jobs:
         # Only publish pre-release if the CI is running for a push of a branch and not for a tag
         if: startsWith(github.ref, 'refs/heads/')
         with:
-          name: 'Nightly ${{ steps.tag.outputs.prerelease_tag }}'
-          tag_name: ${{ steps.tag.outputs.prerelease_tag }}
+          name: 'Nightly ${{ steps.tag.outputs.prerelease_id }}'
+          tag_name: 'nightly-${{ steps.tag.outputs.prerelease_id }}'
           prerelease: true
           generate_release_notes: true
           files: |
