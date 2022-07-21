@@ -18,4 +18,16 @@ void clearscreen() {
   }
 }
 
+uint8_t previous_keys_state = 0x00;
+
+void throttlekey(uint8_t keys, uint8_t key, void (*cb)(void)) {
+  if (!(previous_keys_state & key) && (keys & key)) {
+    cb();
+    previous_keys_state |= key;
+  }
+  if ((previous_keys_state & key) && !(keys & key)) {
+    previous_keys_state &= ~key;
+  }
+}
+
 #endif
