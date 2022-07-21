@@ -5,6 +5,11 @@
 #include "pages/handler.c"
 #include <gbdk/platform.h>
 
+void handle_theme_change() {
+  // Reverse the palette bits
+  BGP_REG = ~BGP_REG;
+}
+
 void main() {
   // Load font in the background data (2 colors -> 1 bit per pixel)
   set_bkg_1bpp_data(0, 50, font_early_game_boy);
@@ -16,15 +21,9 @@ void main() {
   while (1) {
     uint8_t keys = joypad();
 
-    if (!is_select_pressed && (keys & J_SELECT)) {
-      // Reverse the palette bits
-      BGP_REG = ~BGP_REG;
-      is_select_pressed = TRUE;
-    }
-
-    if (is_select_pressed && !(keys & J_SELECT)) {
-      is_select_pressed = FALSE;
-    }
+    void (*theme_change_handler)(void);
+    theme_change_handler = &handle_theme_change;
+    throttlekey(keys, J_SELECT, theme_change_handler);
 
     switch (current_page) {
     case HOME_HEADER:

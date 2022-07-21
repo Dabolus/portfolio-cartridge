@@ -20,6 +20,22 @@ enum MenuOption current_menu_option_index = MENU_OPTION_ABOUT;
 
 uint8_t current_menu_option_index;
 
+void handle_menu_navigation_up() {
+  current_menu_option_index =
+      (current_menu_option_index + MENU_COLUMNS) % MENU_ITEMS;
+}
+void handle_menu_navigation_right() {
+  current_menu_option_index = (current_menu_option_index + 1) % MENU_ITEMS;
+}
+void handle_menu_navigation_down() {
+  current_menu_option_index =
+      (current_menu_option_index + MENU_ITEMS - MENU_COLUMNS) % MENU_ITEMS;
+}
+void handle_menu_navigation_left() {
+  current_menu_option_index =
+      (current_menu_option_index + MENU_ITEMS - 1) % MENU_ITEMS;
+}
+
 void draw_frame(uint8_t x, uint8_t y, uint8_t w, uint8_t h,
                 const unsigned char *top_frame_map,
                 const unsigned char *right_frame_map,
@@ -81,25 +97,21 @@ void home_menu_loop(uint8_t *current_loop_count, uint8_t keys) {
   update_menu_item_frame(10, 9,
                          current_menu_option_index == MENU_OPTION_SKILLS);
 
-  if (keys & J_UP) {
-    current_menu_option_index =
-        (current_menu_option_index + MENU_COLUMNS) % MENU_ITEMS;
-    waitpadup();
-  }
-  if (keys & J_RIGHT) {
-    current_menu_option_index = (current_menu_option_index + 1) % MENU_ITEMS;
-    waitpadup();
-  }
-  if (keys & J_DOWN) {
-    current_menu_option_index =
-        (current_menu_option_index + MENU_ITEMS - MENU_COLUMNS) % MENU_ITEMS;
-    waitpadup();
-  }
-  if (keys & J_LEFT) {
-    current_menu_option_index =
-        (current_menu_option_index + MENU_ITEMS - 1) % MENU_ITEMS;
-    waitpadup();
-  }
+  void (*menu_navigation_up_handler)(void);
+  menu_navigation_up_handler = &handle_menu_navigation_up;
+  throttlekey(keys, J_UP, menu_navigation_up_handler);
+
+  void (*menu_navigation_right_handler)(void);
+  menu_navigation_right_handler = &handle_menu_navigation_right;
+  throttlekey(keys, J_RIGHT, menu_navigation_right_handler);
+
+  void (*menu_navigation_down_handler)(void);
+  menu_navigation_down_handler = &handle_menu_navigation_down;
+  throttlekey(keys, J_DOWN, menu_navigation_down_handler);
+
+  void (*menu_navigation_left_handler)(void);
+  menu_navigation_left_handler = &handle_menu_navigation_left;
+  throttlekey(keys, J_LEFT, menu_navigation_left_handler);
 }
 
 #endif
