@@ -11,14 +11,23 @@
 
 const uint8_t typewritten_text_start_x = 2;
 const uint8_t typewritten_text_start_y = 4;
-uint8_t current_text_x = 0;
-uint8_t current_text_y = 0;
-uint8_t current_text_index = 0;
-uint8_t current_text_id = 0;
-BOOLEAN is_deleting = FALSE;
-BOOLEAN is_select_pressed = FALSE;
+
+uint8_t current_text_x;
+uint8_t current_text_y;
+uint8_t current_text_index;
+uint8_t current_text_id;
+BOOLEAN is_deleting;
+BOOLEAN is_select_pressed;
 
 void home_header_setup() {
+  // Initialize state variables
+  current_text_x = 0;
+  current_text_y = 0;
+  current_text_index = 0;
+  current_text_id = 0;
+  is_deleting = FALSE;
+  is_select_pressed = FALSE;
+
   // Load and draw hello message
   set_bkg_data(50, 39, home_header_data);
   set_bkg_tiles(0, 1, 20, 3, home_header_map);
