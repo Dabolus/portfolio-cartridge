@@ -25,10 +25,10 @@ void init_page(enum Page page) {
 }
 
 void set_page(enum Page page) {
-  fadeout(15);
+  fadeout(16);
   clearscreen();
   init_page(page);
-  fadein(15);
+  fadein(16);
 }
 
 #endif
