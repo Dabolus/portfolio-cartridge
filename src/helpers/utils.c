@@ -21,10 +21,14 @@ void clearscreen() {
 uint8_t previous_keys_state = 0x00;
 
 void throttlekey(uint8_t keys, uint8_t key, void (*cb)(void)) {
+  // If the key is pressed and was not pressed before, call the callback
+  // and set the key as pressed in our internal state
   if (!(previous_keys_state & key) && (keys & key)) {
     cb();
     previous_keys_state |= key;
   }
+  // If the key is no more pressed and was pressed before, set the key as
+  // not pressed in our internal state
   if ((previous_keys_state & key) && !(keys & key)) {
     previous_keys_state &= ~key;
   }
