@@ -10,12 +10,16 @@ void fastdelay(uint8_t num_loops) {
   }
 }
 
-void clearscreen() {
-  for (uint8_t i = 0; i < DEVICE_SCREEN_WIDTH; ++i) {
-    for (uint8_t j = 0; j < DEVICE_SCREEN_HEIGHT; ++j) {
-      set_bkg_tile_xy(i, j, 0x00);
+void cleararea(uint8_t x, uint8_t y, uint8_t w, uint8_t h) {
+  for (uint8_t i = 0; i < w; ++i) {
+    for (uint8_t j = 0; j < h; ++j) {
+      set_bkg_tile_xy(x + i, y + j, 0x00);
     }
   }
+}
+
+void clearscreen() {
+  cleararea(0, 0, DEVICE_SCREEN_WIDTH, DEVICE_SCREEN_HEIGHT);
 }
 
 uint8_t previous_keys_state = 0x00;
