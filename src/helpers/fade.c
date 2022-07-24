@@ -1,10 +1,9 @@
-#ifndef _HELPERS_FADE_
-#define _HELPERS_FADE_
+#ifndef HELPERS_FADE_C
+#define HELPERS_FADE_C
 
+#include "fade.h"
+#include "utils.h"
 #include <gbdk/platform.h>
-#include <stdint.h>
-
-#include "utils.c"
 
 static const uint16_t bg_palette[] = {RGB_WHITE, RGB_LIGHTGRAY, RGB_DARKGRAY,
                                       RGB_BLACK, RGB_BLACK,     RGB_BLACK,

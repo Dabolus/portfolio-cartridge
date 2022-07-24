@@ -25,17 +25,18 @@ LCCFLAGS += -v     # Uncomment for lcc verbose output
 # You can set the name of the ROM file here
 PROJECTNAME = portfolio
 
-# EXT?=gb # Only sets extension to default (game boy .gb) if not populated
+EXT?=gb
 SRCDIR      = src
 OBJDIR      = obj/$(EXT)
 RESDIR      = res
 BINDIR      = build/$(EXT)
-MKDIRS      = $(OBJDIR) $(BINDIR) # See bottom of Makefile for directory auto-creation
+# See bottom of Makefile for directory auto-creation
+MKDIRS      = $(OBJDIR) $(BINDIR) $(shell find $(SRCDIR)/* $(RESDIR)/* -type d | sed "s/$(subst /,\/,$(SRCDIR))/$(subst /,\/,$(OBJDIR))/" | sed "s/$(subst /,\/,$(RESDIR))/$(subst /,\/,$(OBJDIR))/")
 
 BINS	    = $(OBJDIR)/$(PROJECTNAME).$(EXT)
-CSOURCES    = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.c))) $(foreach dir,$(RESDIR),$(notdir $(wildcard $(dir)/*.c)))
-ASMSOURCES  = $(foreach dir,$(SRCDIR),$(notdir $(wildcard $(dir)/*.s)))
-OBJS       = $(CSOURCES:%.c=$(OBJDIR)/%.o) $(ASMSOURCES:%.s=$(OBJDIR)/%.o)
+CSOURCES    = $(shell find $(SRCDIR) $(RESDIR) -name "*.c" | cut -c5-)
+ASMSOURCES    = $(shell find $(SRCDIR) $(RESDIR) -name "*.s" | cut -c5-)
+OBJS       = $(patsubst %.c,$(OBJDIR)/%.o,$(CSOURCES)) $(patsubst %.s,$(OBJDIR)/%.o,$(ASMSOURCES))
 
 # Builds all targets sequentially
 all: $(TARGETS)
@@ -50,6 +51,10 @@ $(OBJDIR)/%.o:	$(RESDIR)/%.c
 
 # Compile .s assembly files in "src/" to .o object files
 $(OBJDIR)/%.o:	$(SRCDIR)/%.s
+	$(LCC) $(CFLAGS) -c -o $@ $<
+
+# Compile .s assembly files in "res/" to .o object files
+$(OBJDIR)/%.o:	$(RESDIR)/%.s
 	$(LCC) $(CFLAGS) -c -o $@ $<
 
 # If needed, compile .c files i n"src/" to .s assembly files

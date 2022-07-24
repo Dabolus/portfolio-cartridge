@@ -1,7 +1,7 @@
-#ifndef _ASSETS_PHRASES_
-#define _ASSETS_PHRASES_
+#ifndef ASSETS_PHRASES_C
+#define ASSETS_PHRASES_C
 
-#include "../helpers/text.c"
+#include "phrases.h"
 
 /* HOME HEADER */
 

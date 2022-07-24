@@ -1,3 +1,8 @@
+#ifndef ASSETS_NOT_C
+#define ASSETS_NOT_C
+
+#include "not.h"
+
 // 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
 // 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
 // 00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
@@ -13,3 +18,5 @@ const unsigned char not_data[] = {
     0x00, 0x00, 0x9C, 0x9C, 0x48, 0x48, 0x48, 0x48, 0x88, 0x88};
 
 const unsigned char not_tiles[] = {0x5A, 0x5B};
+
+#endif

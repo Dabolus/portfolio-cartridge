@@ -1,22 +1,12 @@
-#ifndef _PAGES_HOME_MENU_
-#define _PAGES_HOME_MENU_
+#ifndef PAGES_HOME_MENU_C
+#define PAGES_HOME_MENU_C
 
-#include "../assets/home_menu.c"
-#include "../assets/phrases.c"
+#include "home_menu.h"
+#include "../../res/assets/home_menu.h"
+#include "../../res/assets/phrases.h"
+#include "../helpers/text.h"
+#include "../helpers/utils.h"
 #include <gbdk/platform.h>
-
-#define MENU_COLUMNS 2
-#define MENU_ROWS 2
-#define MENU_ITEMS (MENU_COLUMNS * MENU_ROWS)
-#define MENU_ITEM_WIDTH (DEVICE_SCREEN_WIDTH / MENU_COLUMNS)
-#define MENU_ITEM_HEIGHT (DEVICE_SCREEN_HEIGHT / MENU_ROWS)
-
-enum MenuOption {
-  MENU_OPTION_ABOUT,
-  MENU_OPTION_CONTACTS,
-  MENU_OPTION_PROJECTS,
-  MENU_OPTION_SKILLS,
-};
 
 enum MenuOption current_menu_option = MENU_OPTION_ABOUT;
 

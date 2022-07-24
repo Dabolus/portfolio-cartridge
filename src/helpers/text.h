@@ -1,8 +1,6 @@
-#ifndef _HELPERS_TEXT_
-#define _HELPERS_TEXT_
-
-#include "../font_early_game_boy.h"
-#include <gbdk/platform.h>
+#pragma once
+#ifndef HELPERS_TEXT_H
+#define HELPERS_TEXT_H
 
 #define ARRAY_LEN(A) sizeof(A) / sizeof(A[0])
 #define PRINT_TEXT(X, Y, T) set_bkg_tiles(X, Y, ARRAY_LEN(T), 1, T)

@@ -1,14 +1,11 @@
-#ifndef _PAGES_HANDLER_
-#define _PAGES_HANDLER_
+#ifndef PAGES_HANDLER_C
+#define PAGES_HANDLER_C
 
-#include "../helpers/fade.c"
-#include "home_header.c"
-#include "home_menu.c"
-
-enum Page {
-  HOME_HEADER,
-  HOME_MENU,
-};
+#include "handler.h"
+#include "../helpers/fade.h"
+#include "../helpers/utils.h"
+#include "home_header.h"
+#include "home_menu.h"
 
 enum Page current_page = HOME_HEADER;
 

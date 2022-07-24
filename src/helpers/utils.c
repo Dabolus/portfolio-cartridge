@@ -1,8 +1,8 @@
-#ifndef _HELPERS_UTILS_
-#define _HELPERS_UTILS_
+#ifndef HELPERS_UTILS_C
+#define HELPERS_UTILS_C
 
+#include "utils.h"
 #include <gbdk/platform.h>
-#include <stdint.h>
 
 void fastdelay(uint8_t num_loops) {
   for (uint8_t i = 0; i != num_loops; i++) {

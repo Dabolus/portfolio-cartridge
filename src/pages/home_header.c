@@ -1,12 +1,13 @@
-#ifndef _PAGES_HOME_HEADER_
-#define _PAGES_HOME_HEADER_
+#ifndef PAGES_HOME_HEADER_C
+#define PAGES_HOME_HEADER_C
 
-#include "../assets/home_header.c"
-#include "../assets/arrow.c"
-#include "../assets/google_g.c"
-#include "../assets/not.c"
-#include "../assets/phrases.c"
-#include "../helpers/text.c"
+#include "home_header.h"
+#include "../../res/assets/arrow.h"
+#include "../../res/assets/google_g.h"
+#include "../../res/assets/home_header.h"
+#include "../../res/assets/not.h"
+#include "../../res/assets/phrases.h"
+#include "../helpers/text.h"
 #include <gbdk/platform.h>
 
 const uint8_t typewritten_text_start_x = 2;

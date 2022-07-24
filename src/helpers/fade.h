@@ -1,0 +1,11 @@
+#pragma once
+#ifndef HELPERS_FADE_H
+#define HELPERS_FADE_H
+
+#include <gbdk/platform.h>
+
+extern void fadeout(uint8_t duration);
+
+extern void fadein(uint8_t duration);
+
+#endif

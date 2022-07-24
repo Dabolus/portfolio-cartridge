@@ -1,8 +1,10 @@
-#include "font_early_game_boy.h"
-#include "helpers/fade.c"
-#include "helpers/text.c"
-#include "helpers/utils.c"
-#include "pages/handler.c"
+#include "../res/fonts/font_early_game_boy.h"
+#include "helpers/fade.h"
+#include "helpers/text.h"
+#include "helpers/utils.h"
+#include "pages/handler.h"
+#include "pages/home_header.h"
+#include "pages/home_menu.h"
 #include <gbdk/platform.h>
 
 void handle_theme_change() {
