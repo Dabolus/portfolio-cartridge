@@ -108,7 +108,6 @@ void handle_menu_navigation_left() {
 }
 
 void home_menu_setup() {
-  current_menu_option = MENU_OPTION_ABOUT;
   // Load the frame data
   set_bkg_data(50, 16, home_menu_frame_data);
 
