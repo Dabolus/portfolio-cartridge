@@ -5,6 +5,10 @@
 extern enum Page {
   HOME_HEADER,
   HOME_MENU,
+  ABOUT,
+  CONTACTS,
+  PROJECTS,
+  SKILLS,
 };
 
 extern enum Page current_page;

@@ -4,6 +4,7 @@
 #include "handler.h"
 #include "../helpers/fade.h"
 #include "../helpers/utils.h"
+#include "about.h"
 #include "home_header.h"
 #include "home_menu.h"
 
@@ -17,6 +18,18 @@ void init_page(enum Page page) {
     break;
   case HOME_MENU:
     home_menu_setup();
+    break;
+  case ABOUT:
+    about_setup();
+    break;
+  case CONTACTS:
+    contacts_setup();
+    break;
+  case PROJECTS:
+    projects_setup();
+    break;
+  case SKILLS:
+    skills_setup();
     break;
   }
 }

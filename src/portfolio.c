@@ -2,9 +2,13 @@
 #include "helpers/fade.h"
 #include "helpers/text.h"
 #include "helpers/utils.h"
+#include "pages/about.h"
+#include "pages/contacts.h"
 #include "pages/handler.h"
 #include "pages/home_header.h"
 #include "pages/home_menu.h"
+#include "pages/projects.h"
+#include "pages/skills.h"
 #include <gbdk/platform.h>
 
 void handle_theme_change() {
@@ -35,6 +39,18 @@ void main() {
       home_menu_loop(&current_loop_count, keys);
       break;
     }
+    case ABOUT:
+      about_loop(&current_loop_count, keys);
+      break;
+    case CONTACTS:
+      contacts_loop(&current_loop_count, keys);
+      break;
+    case PROJECTS:
+      projects_loop(&current_loop_count, keys);
+      break;
+    case SKILLS:
+      skills_loop(&current_loop_count, keys);
+      break;
     }
 
     fastdelay(3);

@@ -168,6 +168,12 @@ void home_menu_loop(uint8_t *current_loop_count, uint8_t keys) {
     set_page(HOME_HEADER);
   }
 
+  if (keys & J_A) {
+    // Current menu option + the number of extra pages we have defined
+    // before the menu pages (i.e. `HOME_HEADER` and `HOME_MENU`)
+    set_page(current_menu_option + 2);
+  }
+
   void (*menu_navigation_up_handler)(void);
   menu_navigation_up_handler = &handle_menu_navigation_up;
   throttlekey(keys, J_UP, menu_navigation_up_handler);
