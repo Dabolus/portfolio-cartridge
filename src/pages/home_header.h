@@ -9,6 +9,6 @@ extern const uint8_t typewritten_text_start_y;
 
 extern void home_header_setup(void);
 
-extern void home_header_loop(uint8_t *current_loop_count);
+extern void home_header_loop(uint8_t *current_loop_count, uint8_t keys);
 
 #endif

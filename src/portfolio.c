@@ -29,16 +29,10 @@ void main() {
 
     switch (current_page) {
     case HOME_HEADER:
-      home_header_loop(&current_loop_count);
-      if (keys & (J_START | J_A)) {
-        set_page(HOME_MENU);
-      }
+      home_header_loop(&current_loop_count, keys);
       break;
     case HOME_MENU: {
       home_menu_loop(&current_loop_count, keys);
-      if (keys & J_B) {
-        set_page(HOME_HEADER);
-      }
       break;
     }
     }

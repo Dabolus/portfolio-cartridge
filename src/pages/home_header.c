@@ -8,6 +8,7 @@
 #include "../../res/assets/not.h"
 #include "../../res/assets/phrases.h"
 #include "../helpers/text.h"
+#include "handler.h"
 #include <gbdk/platform.h>
 
 const uint8_t typewritten_text_start_x = 2;
@@ -53,7 +54,11 @@ void home_header_setup() {
   PRINT_TEXT(5, 10, phrases_suffix_3);
 }
 
-void home_header_loop(uint8_t *current_loop_count) {
+void home_header_loop(uint8_t *current_loop_count, uint8_t keys) {
+  if (keys & (J_START | J_A)) {
+    set_page(HOME_MENU);
+  }
+
   // We reached the start of the phrase
   if (current_text_index == 0) {
     is_deleting = FALSE;

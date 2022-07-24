@@ -6,6 +6,7 @@
 #include "../../res/assets/phrases.h"
 #include "../helpers/text.h"
 #include "../helpers/utils.h"
+#include "handler.h"
 #include <gbdk/platform.h>
 
 enum MenuOption current_menu_option = MENU_OPTION_ABOUT;
@@ -163,6 +164,10 @@ void home_menu_setup() {
 
 void home_menu_loop(uint8_t *current_loop_count, uint8_t keys) {
   current_loop_count = 0;
+
+  if (keys & J_B) {
+    set_page(HOME_HEADER);
+  }
 
   void (*menu_navigation_up_handler)(void);
   menu_navigation_up_handler = &handle_menu_navigation_up;
