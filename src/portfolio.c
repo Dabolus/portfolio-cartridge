@@ -27,9 +27,17 @@ void main() {
   while (1) {
     uint8_t keys = joypad();
 
+    // Allow switching theme by pressing Select
     void (*theme_change_handler)(void);
     theme_change_handler = &handle_theme_change;
     throttlekey(keys, J_SELECT, theme_change_handler);
+
+    // Allow going back to the home header from any page
+    // by pressing Start
+    if (current_page != HOME_HEADER && (keys & J_START)) {
+      set_page(HOME_HEADER);
+      continue;
+    }
 
     switch (current_page) {
     case HOME_HEADER:
