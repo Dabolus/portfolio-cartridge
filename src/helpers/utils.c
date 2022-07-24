@@ -10,12 +10,16 @@ void fastdelay(uint8_t num_loops) {
   }
 }
 
-void cleararea(uint8_t x, uint8_t y, uint8_t w, uint8_t h) {
+void fillarea(uint8_t x, uint8_t y, uint8_t w, uint8_t h, unsigned char c) {
   for (uint8_t i = 0; i < w; ++i) {
     for (uint8_t j = 0; j < h; ++j) {
-      set_bkg_tile_xy(x + i, y + j, 0x00);
+      set_bkg_tile_xy(x + i, y + j, c);
     }
   }
+}
+
+void cleararea(uint8_t x, uint8_t y, uint8_t w, uint8_t h) {
+  fillarea(x, y, w, h, 0x00);
 }
 
 void clearscreen() {

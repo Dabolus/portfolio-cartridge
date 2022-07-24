@@ -6,6 +6,9 @@
 
 extern void fastdelay(uint8_t num_loops);
 
+extern void fillarea(uint8_t x, uint8_t y, uint8_t w, uint8_t h,
+                     unsigned char c);
+
 extern void cleararea(uint8_t x, uint8_t y, uint8_t w, uint8_t h);
 
 extern void clearscreen(void);
