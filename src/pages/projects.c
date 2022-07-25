@@ -1,6 +1,7 @@
 #ifndef PAGES_PROJECTS_C
 #define PAGES_PROJECTS_C
 
+#include "projects.h"
 #include "../../res/assets/phrases.h"
 #include "../helpers/text.h"
 #include "../helpers/utils.h"

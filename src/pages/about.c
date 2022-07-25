@@ -1,6 +1,7 @@
 #ifndef PAGES_ABOUT_C
 #define PAGES_ABOUT_C
 
+#include "about.h"
 #include "../../res/assets/phrases.h"
 #include "../helpers/text.h"
 #include "../helpers/utils.h"

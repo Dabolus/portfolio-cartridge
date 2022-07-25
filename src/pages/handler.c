@@ -5,8 +5,11 @@
 #include "../helpers/fade.h"
 #include "../helpers/utils.h"
 #include "about.h"
+#include "contacts.h"
 #include "home_header.h"
 #include "home_menu.h"
+#include "projects.h"
+#include "skills.h"
 
 enum Page current_page = HOME_HEADER;
 

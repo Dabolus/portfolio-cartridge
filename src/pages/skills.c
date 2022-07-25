@@ -1,6 +1,7 @@
 #ifndef PAGES_SKILLS_C
 #define PAGES_SKILLS_C
 
+#include "skills.h"
 #include "../../res/assets/phrases.h"
 #include "../helpers/text.h"
 #include "../helpers/utils.h"

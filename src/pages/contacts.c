@@ -1,6 +1,7 @@
 #ifndef PAGES_CONTACTS_C
 #define PAGES_CONTACTS_C
 
+#include "contacts.h"
 #include "../../res/assets/phrases.h"
 #include "../helpers/text.h"
 #include "../helpers/utils.h"
