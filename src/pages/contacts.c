@@ -9,7 +9,7 @@
 
 void contacts_setup() {
   set_bkg_tiles(1, 1, ARRAY_LEN(contacts), 1, contacts);
-  fillarea(0, 3, DEVICE_SCREEN_WIDTH, 1, 0x33);
+  fillarea(0, 3, DEVICE_SCREEN_WIDTH, 1, 0x32);
 }
 
 void contacts_loop(uint8_t *current_loop_count, uint8_t keys) {

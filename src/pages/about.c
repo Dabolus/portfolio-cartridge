@@ -47,7 +47,7 @@ void handle_about_me_scroll_page_down() {
 
 void about_setup() {
   set_bkg_tiles(1, 1, ARRAY_LEN(about_me), 1, about_me);
-  fillarea(0, PAGE_HEADER_HEIGHT - 1, DEVICE_SCREEN_WIDTH, 1, 0x33);
+  fillarea(0, PAGE_HEADER_HEIGHT - 1, DEVICE_SCREEN_WIDTH, 1, 0x32);
   about_me_current_row_index = 0;
   draw_about_me_description_chunk();
 }
