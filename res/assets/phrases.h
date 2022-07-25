@@ -28,4 +28,6 @@ extern const unsigned char contacts[8];
 extern const unsigned char projects[8];
 extern const unsigned char skills[6];
 
+extern const unsigned char about_me_description[67][20];
+
 #endif

@@ -2,6 +2,8 @@
 #ifndef PAGES_HANDLER_H
 #define PAGES_HANDLER_H
 
+#define PAGE_HEADER_HEIGHT 4
+
 extern enum Page {
   HOME_HEADER,
   HOME_MENU,
