@@ -30,4 +30,11 @@ extern const unsigned char skills[6];
 
 extern const unsigned char about_me_description[67][20];
 
+extern const unsigned char email[5];
+
+extern const unsigned char gga[3];
+extern const unsigned char dabolus[7];
+extern const unsigned char giorgio[7];
+extern const unsigned char garasto[7];
+
 #endif
