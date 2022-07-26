@@ -33,6 +33,11 @@ jobs:
         if: startsWith(github.ref, 'refs/heads/')
         run: |
           echo "::set-output name=prerelease_id::$(date +"%Y-%m-%dT%H%M")"
+      - name: Generate release notes
+        id: notes
+        run: |
+          latest_tag=$(git describe --tags --abbrev=0)
+          echo "::set-output name=release_notes::$(git log $latest_tag..HEAD --oneline --no-merges --pretty=format:'* %s in commit %h')"
       - name: Publish pre-release
         uses: softprops/action-gh-release@v1
         env:
@@ -42,8 +47,10 @@ jobs:
         with:
           name: 'Nightly ${{ steps.tag.outputs.prerelease_id }}'
           tag_name: 'nightly-${{ steps.tag.outputs.prerelease_id }}'
+          body: |
+            ## What's Changed
+            ${{ steps.notes.outputs.release_notes }}
           prerelease: true
-          generate_release_notes: true
           files: |
             build/gb/portfolio.gb
             build/gbc/portfolio.gbc
