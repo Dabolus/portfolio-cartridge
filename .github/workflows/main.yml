@@ -38,6 +38,7 @@ jobs:
         run: |
           git fetch --unshallow
           latest_tag=$(git describe --tags --abbrev=0)
+          echo "::set-output name=latest_tag::$latest_tag"
           echo "::set-output name=release_notes::$(git log $latest_tag..HEAD --oneline --no-merges --pretty=format:'* %s in commit %h')"
       - name: Publish pre-release
         uses: softprops/action-gh-release@v1
@@ -51,6 +52,8 @@ jobs:
           body: |
             ## What's Changed
             ${{ steps.notes.outputs.release_notes }}
+
+            **Full Changelog**: https://github.com/Dabolus/portfolio-cartridge/compare/${{ steps.notes.outputs.latest_tag }}...nightly-${{ steps.tag.outputs.prerelease_id }}
           prerelease: true
           files: |
             build/gb/portfolio.gb
