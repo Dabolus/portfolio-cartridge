@@ -55,10 +55,6 @@ void home_header_setup() {
 }
 
 void home_header_loop(uint8_t *current_loop_count, uint8_t keys) {
-  if (keys & (J_START | J_A)) {
-    set_page(HOME_MENU);
-  }
-
   // We reached the start of the phrase
   if (current_text_index == 0) {
     is_deleting = FALSE;
@@ -128,6 +124,10 @@ void home_header_loop(uint8_t *current_loop_count, uint8_t keys) {
       ++current_text_y;
       ++current_text_index;
     }
+  }
+
+  if (keys & (J_START | J_A)) {
+    set_page(HOME_MENU);
   }
 }
 
