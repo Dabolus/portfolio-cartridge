@@ -8,49 +8,30 @@
 #include "handler.h"
 #include <gbdk/platform.h>
 
-uint8_t about_me_current_row_index;
-
-void draw_about_me_description_chunk() {
-  for (uint8_t i = 0; i < DEVICE_SCREEN_HEIGHT - PAGE_HEADER_HEIGHT; ++i) {
-    set_bkg_tiles(0, i + PAGE_HEADER_HEIGHT, DEVICE_SCREEN_WIDTH, 1,
-                  about_me_description[i + about_me_current_row_index]);
-  }
-}
-
 void handle_about_me_scroll_row_up() {
-  if (about_me_current_row_index == 0) {
-    return;
-  }
-  --about_me_current_row_index;
-  draw_about_me_description_chunk();
+  scroller_row_up();
+  scroller_draw(about_me_description);
 }
 
 void handle_about_me_scroll_row_down() {
-  if (about_me_current_row_index == ARRAY_LEN(about_me_description) -
-                                        DEVICE_SCREEN_HEIGHT +
-                                        PAGE_HEADER_HEIGHT) {
-    return;
-  }
-  ++about_me_current_row_index;
-  draw_about_me_description_chunk();
+  scroller_row_down();
+  scroller_draw(about_me_description);
 }
 
 void handle_about_me_scroll_page_down() {
-  about_me_current_row_index += DEVICE_SCREEN_HEIGHT - PAGE_HEADER_HEIGHT;
-  if (about_me_current_row_index > ARRAY_LEN(about_me_description) -
-                                       DEVICE_SCREEN_HEIGHT +
-                                       PAGE_HEADER_HEIGHT) {
-    about_me_current_row_index = ARRAY_LEN(about_me_description) -
-                                 DEVICE_SCREEN_HEIGHT + PAGE_HEADER_HEIGHT;
-  }
-  draw_about_me_description_chunk();
+  scroller_page_down();
+  scroller_draw(about_me_description);
 }
 
 void about_setup() {
   set_bkg_tiles(1, 1, ARRAY_LEN(about_me), 1, about_me);
   fillarea(0, PAGE_HEADER_HEIGHT - 1, DEVICE_SCREEN_WIDTH, 1, 0x32);
-  about_me_current_row_index = 0;
-  draw_about_me_description_chunk();
+  struct ScrollerConfig scroller_config;
+  scroller_config.y = PAGE_HEADER_HEIGHT;
+  scroller_config.height = DEVICE_SCREEN_HEIGHT - PAGE_HEADER_HEIGHT;
+  scroller_config.content_total_rows = ARRAY_LEN(about_me_description);
+  scroller_init(&scroller_config);
+  scroller_draw(about_me_description);
 }
 
 void about_loop(uint8_t *current_loop_count, uint8_t keys) {
