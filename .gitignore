@@ -1,2 +1,6 @@
 build/
 obj/
+node_modules/
+res/generated/
+.cache/
+.env
