@@ -13,12 +13,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - name: Install scripts dependencies
+        run: npm --prefix scripts install
       - name: Install GBDK-2020
         run: |
           wget https://github.com/gbdk-2020/gbdk-2020/releases/latest/download/gbdk-linux64.tar.gz
           tar -xzf gbdk-linux64.tar.gz
           rm gbdk-linux64.tar.gz
           mv gbdk ~
+      - name: Generate dynamic pages
+        run: npm --prefix scripts run generate
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Build ROMs
         run: |
           make
