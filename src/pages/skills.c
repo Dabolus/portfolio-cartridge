@@ -42,18 +42,10 @@ void skills_loop(uint8_t *current_loop_count, uint8_t keys) {
   }
 
   // Allow scrolling by one row by pressing up or down
-  void (*skills_scroll_row_up_handler)(void);
-  skills_scroll_row_up_handler = &handle_skills_scroll_row_up;
-  throttlekey(keys, J_UP, skills_scroll_row_up_handler);
-
-  void (*skills_scroll_row_down_handler)(void);
-  skills_scroll_row_down_handler = &handle_skills_scroll_row_down;
-  throttlekey(keys, J_DOWN, skills_scroll_row_down_handler);
-
+  throttlekey(keys, J_UP, &handle_skills_scroll_row_up);
+  throttlekey(keys, J_DOWN, &handle_skills_scroll_row_down);
   // Allow scrolling by one page by pressing A
-  void (*skills_scroll_page_down_handler)(void);
-  skills_scroll_page_down_handler = &handle_skills_scroll_page_down;
-  throttlekey(keys, J_A, skills_scroll_page_down_handler);
+  throttlekey(keys, J_A, &handle_skills_scroll_page_down);
 }
 
 #endif

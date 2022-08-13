@@ -51,16 +51,10 @@ void projects_loop(uint8_t *current_loop_count, uint8_t keys) {
     set_page(HOME_MENU);
   }
 
-  void (*projects_navigation_prev_handler)(void);
-  projects_navigation_prev_handler = &handle_projects_navigation_prev;
-
-  void (*projects_navigation_next_handler)(void);
-  projects_navigation_next_handler = &handle_projects_navigation_next;
-
-  throttlekey(keys, J_UP, projects_navigation_prev_handler);
-  throttlekey(keys, J_RIGHT, projects_navigation_next_handler);
-  throttlekey(keys, J_DOWN, projects_navigation_next_handler);
-  throttlekey(keys, J_LEFT, projects_navigation_prev_handler);
+  throttlekey(keys, J_UP, &handle_projects_navigation_prev);
+  throttlekey(keys, J_RIGHT, &handle_projects_navigation_next);
+  throttlekey(keys, J_DOWN, &handle_projects_navigation_next);
+  throttlekey(keys, J_LEFT, &handle_projects_navigation_prev);
 }
 
 #endif

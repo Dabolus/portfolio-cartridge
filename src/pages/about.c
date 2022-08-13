@@ -40,18 +40,10 @@ void about_loop(uint8_t *current_loop_count, uint8_t keys) {
   }
 
   // Allow scrolling by one row by pressing up or down
-  void (*about_me_scroll_row_up_handler)(void);
-  about_me_scroll_row_up_handler = &handle_about_me_scroll_row_up;
-  throttlekey(keys, J_UP, about_me_scroll_row_up_handler);
-
-  void (*about_me_scroll_row_down_handler)(void);
-  about_me_scroll_row_down_handler = &handle_about_me_scroll_row_down;
-  throttlekey(keys, J_DOWN, about_me_scroll_row_down_handler);
-
+  throttlekey(keys, J_UP, &handle_about_me_scroll_row_up);
+  throttlekey(keys, J_DOWN, &handle_about_me_scroll_row_down);
   // Allow scrolling by one page by pressing A
-  void (*about_me_scroll_page_down_handler)(void);
-  about_me_scroll_page_down_handler = &handle_about_me_scroll_page_down;
-  throttlekey(keys, J_A, about_me_scroll_page_down_handler);
+  throttlekey(keys, J_A, &handle_about_me_scroll_page_down);
 }
 
 #endif

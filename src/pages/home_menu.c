@@ -160,21 +160,10 @@ void home_menu_loop(uint8_t *current_loop_count, uint8_t keys) {
     set_page(current_menu_option + 2);
   }
 
-  void (*menu_navigation_up_handler)(void);
-  menu_navigation_up_handler = &handle_menu_navigation_up;
-  throttlekey(keys, J_UP, menu_navigation_up_handler);
-
-  void (*menu_navigation_right_handler)(void);
-  menu_navigation_right_handler = &handle_menu_navigation_right;
-  throttlekey(keys, J_RIGHT, menu_navigation_right_handler);
-
-  void (*menu_navigation_down_handler)(void);
-  menu_navigation_down_handler = &handle_menu_navigation_down;
-  throttlekey(keys, J_DOWN, menu_navigation_down_handler);
-
-  void (*menu_navigation_left_handler)(void);
-  menu_navigation_left_handler = &handle_menu_navigation_left;
-  throttlekey(keys, J_LEFT, menu_navigation_left_handler);
+  throttlekey(keys, J_UP, &handle_menu_navigation_up);
+  throttlekey(keys, J_RIGHT, &handle_menu_navigation_right);
+  throttlekey(keys, J_DOWN, &handle_menu_navigation_down);
+  throttlekey(keys, J_LEFT, &handle_menu_navigation_left);
 }
 
 #endif
