@@ -34,6 +34,26 @@ void drawframe(
   set_bkg_tile_xy(x, y, top_left_corner_tile);
 }
 
+void drawtext(uint8_t start_x, uint8_t start_y, uint8_t max_width,
+              const unsigned char *text) {
+  uint8_t current_text_x = 0;
+  uint8_t current_text_y = 0;
+  uint8_t current_text_index = 0;
+
+  while (text[current_text_index] != 0xFF) {
+    set_bkg_tile_xy(start_x + current_text_x, start_y + current_text_y,
+                    text[current_text_index]);
+    ++current_text_x;
+    ++current_text_index;
+    // Handle newlines
+    if (text[current_text_index] == 0xFE) {
+      current_text_x = 0;
+      ++current_text_y;
+      ++current_text_index;
+    }
+  };
+}
+
 uint8_t previous_keys_state = 0x00;
 
 void throttlekey(uint8_t keys, uint8_t key, void (*cb)(void)) {

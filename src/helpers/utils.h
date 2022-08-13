@@ -17,6 +17,9 @@ extern void drawframe(
     unsigned char bottom_left_corner_tile, unsigned char left_border_tile,
     unsigned char top_left_corner_tile);
 
+extern void drawtext(uint8_t start_x, uint8_t start_y, uint8_t max_width,
+                     const unsigned char *text);
+
 extern void throttlekey(uint8_t keys, uint8_t key, void (*cb)(void));
 
 extern struct ScrollerConfig {
