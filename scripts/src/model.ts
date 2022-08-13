@@ -19,3 +19,24 @@ export interface SkillsData {
   readonly music: Record<string, SkillData>;
   readonly soft: Record<string, SkillData>;
 }
+
+export interface Icon {
+  readonly svg?: string;
+  readonly jpg?: string;
+  readonly png?: string;
+  readonly webp?: string;
+  readonly jxl?: string;
+  readonly pixelart: string;
+  readonly placeholder: string;
+}
+
+export interface ProjectData {
+  readonly id: string;
+  readonly name: string;
+  readonly description: string;
+  readonly link: string;
+  readonly source?: string;
+  readonly languages: readonly string[];
+  readonly frameworks: readonly string[];
+  readonly icon: Icon;
+}

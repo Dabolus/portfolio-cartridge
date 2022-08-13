@@ -25,6 +25,38 @@ export const numberToHex = (number: number) =>
 
 export const binaryToHex = (binary: string) => numberToHex(parseInt(binary, 2));
 
+export const autoWrapPhrase = (
+  phrase: string,
+  maxWidth: number,
+  separator = ' ',
+  printSeparator = false,
+) => {
+  const words = phrase.split(separator);
+  const lines = [];
+  let currentLine = words[0];
+
+  for (let i = 1; i < words.length; i++) {
+    const word = words[i];
+    const width = (currentLine + separator + word).length;
+    if (width < maxWidth) {
+      currentLine += separator + word;
+    } else {
+      lines.push(currentLine + (printSeparator ? separator : ''));
+      currentLine = word;
+    }
+  }
+  lines.push(currentLine);
+
+  return lines.join('\n');
+};
+
+export const autoWrapText = (text: string, maxWidth: number) => {
+  const lines = text.split(/[\r\n]/);
+  return lines
+    .flatMap(line => autoWrapPhrase(line, maxWidth).split('\n'))
+    .join('\n');
+};
+
 const charMap: Record<string, number | undefined> = {
   '!': 1,
   '"': 2,
