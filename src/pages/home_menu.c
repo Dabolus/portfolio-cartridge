@@ -22,27 +22,13 @@ struct MenuItem {
 
 struct MenuItem menu_items[4];
 
-void draw_frame(uint8_t x, uint8_t y, uint8_t w, uint8_t h,
-                const unsigned char *top_frame_map,
-                const unsigned char *right_frame_map,
-                const unsigned char *bottom_frame_map,
-                const unsigned char *left_frame_map) {
-  set_bkg_tiles(x, y, w, 1, top_frame_map);
-  set_bkg_tiles(x + w - 1, y + 1, 1, h - 1, right_frame_map);
-  set_bkg_tiles(x, y + h - 1, w - 1, 1, bottom_frame_map);
-  set_bkg_tiles(x, y + 1, 1, h - 2, left_frame_map);
-}
-
 void update_menu_item_frame(struct MenuItem *menu_item, BOOLEAN selected) {
   if (selected) {
-    draw_frame(
-        menu_item->x, menu_item->y, MENU_ITEM_WIDTH, MENU_ITEM_HEIGHT,
-        home_menu_selected_top_frame_map, home_menu_selected_right_frame_map,
-        home_menu_selected_bottom_frame_map, home_menu_selected_left_frame_map);
+    drawframe(menu_item->x, menu_item->y, MENU_ITEM_WIDTH, MENU_ITEM_HEIGHT,
+              0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F, 0x40, 0x41);
   } else {
-    draw_frame(menu_item->x, menu_item->y, MENU_ITEM_WIDTH, MENU_ITEM_HEIGHT,
-               home_menu_top_frame_map, home_menu_right_frame_map,
-               home_menu_bottom_frame_map, home_menu_left_frame_map);
+    drawframe(menu_item->x, menu_item->y, MENU_ITEM_WIDTH, MENU_ITEM_HEIGHT,
+              0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39);
   }
 }
 

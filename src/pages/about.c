@@ -25,7 +25,7 @@ void handle_about_me_scroll_page_down() {
 
 void about_setup() {
   set_bkg_tiles(1, 1, ARRAY_LEN(about_me), 1, about_me);
-  fillarea(0, PAGE_HEADER_HEIGHT - 1, DEVICE_SCREEN_WIDTH, 1, 0x32);
+  fill_bkg_rect(0, PAGE_HEADER_HEIGHT - 1, DEVICE_SCREEN_WIDTH, 1, 0x32);
   struct ScrollerConfig scroller_config;
   scroller_config.y = PAGE_HEADER_HEIGHT;
   scroller_config.height = DEVICE_SCREEN_HEIGHT - PAGE_HEADER_HEIGHT;

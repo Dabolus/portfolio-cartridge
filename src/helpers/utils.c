@@ -10,20 +10,28 @@ void fastdelay(uint8_t num_loops) {
   }
 }
 
-void fillarea(uint8_t x, uint8_t y, uint8_t w, uint8_t h, unsigned char c) {
-  for (uint8_t i = 0; i < w; ++i) {
-    for (uint8_t j = 0; j < h; ++j) {
-      set_bkg_tile_xy(x + i, y + j, c);
-    }
-  }
-}
-
 void cleararea(uint8_t x, uint8_t y, uint8_t w, uint8_t h) {
-  fillarea(x, y, w, h, 0x00);
+  fill_bkg_rect(x, y, w, h, 0x00);
 }
 
 void clearscreen() {
   cleararea(0, 0, DEVICE_SCREEN_WIDTH, DEVICE_SCREEN_HEIGHT);
+}
+
+void drawframe(
+    uint8_t x, uint8_t y, uint8_t w, uint8_t h, unsigned char top_border_tile,
+    unsigned char top_right_corner_tile, unsigned char right_border_tile,
+    unsigned char bottom_right_corner_tile, unsigned char bottom_border_tile,
+    unsigned char bottom_left_corner_tile, unsigned char left_border_tile,
+    unsigned char top_left_corner_tile) {
+  fill_bkg_rect(x + 1, y, w - 2, 1, top_border_tile);
+  set_bkg_tile_xy(x + w - 1, y, top_right_corner_tile);
+  fill_bkg_rect(x + w - 1, y + 1, 1, h - 2, right_border_tile);
+  set_bkg_tile_xy(x + w - 1, y + h - 1, bottom_right_corner_tile);
+  fill_bkg_rect(x + 1, y + h - 1, w - 2, 1, bottom_border_tile);
+  set_bkg_tile_xy(x, y + h - 1, bottom_left_corner_tile);
+  fill_bkg_rect(x, y + 1, 1, h - 2, left_border_tile);
+  set_bkg_tile_xy(x, y, top_left_corner_tile);
 }
 
 uint8_t previous_keys_state = 0x00;

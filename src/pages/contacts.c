@@ -11,7 +11,7 @@
 
 void contacts_setup() {
   set_bkg_tiles(1, 1, ARRAY_LEN(contacts), 1, contacts);
-  fillarea(0, 3, DEVICE_SCREEN_WIDTH, 1, 0x32);
+  fill_bkg_rect(0, 3, DEVICE_SCREEN_WIDTH, 1, 0x32);
 
   // QR code
   set_bkg_tiles(13, 5, ARRAY_LEN(email), 1, email);

@@ -26,7 +26,7 @@ void handle_skills_scroll_page_down() {
 
 void skills_setup() {
   set_bkg_tiles(1, 1, ARRAY_LEN(skills), 1, skills);
-  fillarea(0, PAGE_HEADER_HEIGHT - 1, DEVICE_SCREEN_WIDTH, 1, 0x32);
+  fill_bkg_rect(0, PAGE_HEADER_HEIGHT - 1, DEVICE_SCREEN_WIDTH, 1, 0x32);
   set_bkg_1bpp_data(51, ARRAY_LEN(skills_data) / 8, skills_data);
   struct ScrollerConfig scroller_config;
   scroller_config.y = PAGE_HEADER_HEIGHT;
