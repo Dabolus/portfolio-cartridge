@@ -5,10 +5,6 @@
 #include "utils.h"
 #include <gbdk/platform.h>
 
-static const uint16_t bg_palette[] = {RGB_WHITE, RGB_LIGHTGRAY, RGB_DARKGRAY,
-                                      RGB_BLACK, RGB_BLACK,     RGB_BLACK,
-                                      RGB_BLACK};
-
 void fade(uint8_t to, uint8_t duration, BOOLEAN reverse) {
   uint16_t start =
       reverse ? ((uint16_t)BGP_REG << 8) | to : ((uint16_t)to << 8) | BGP_REG;
