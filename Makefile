@@ -12,7 +12,7 @@ TARGETS=gb gbc pocket megaduck
 LCCFLAGS_gb      = -Wl-yt0x1B # Set an MBC for banking (1B-ROM+MBC5+RAM+BATT)
 LCCFLAGS_pocket  = -Wl-yt0x1B # Usually the same as required for .gb
 LCCFLAGS_duck    = -Wl-yt0x1B # Usually the same as required for .gb
-LCCFLAGS_gbc     = -Wl-yt0x1B -Wm-yc # Same as .gb with: -Wm-yc (gb & gbc) or Wm-yC (gbc exclusive)
+LCCFLAGS_gbc     = -Wl-yt0x1B -Wm-yc -Wl-yp0x143=0x80 # Same as .gb with: -Wm-yc (gb & gbc) or Wm-yC (gbc exclusive)
 LCCFLAGS_sms     =
 LCCFLAGS_gg      =
 
