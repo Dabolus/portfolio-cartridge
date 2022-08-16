@@ -7,12 +7,22 @@
     {
       "type": "emulicious-debugger",
       "request": "launch",
-      "name": "Launch in Emulicious",
+      "name": "Launch in Emulicious (Game Boy)",
       "emuliciousPath": "/Applications/Emulicious/Emulicious.jar",
       "program": "${workspaceFolder}/build/gb/portfolio.gb",
       "port": 58870,
       "stopOnEntry": true,
       "preLaunchTask": "Game Boy - Watch"
+    },
+    {
+      "type": "emulicious-debugger",
+      "request": "launch",
+      "name": "Launch in Emulicious (Game Boy Color)",
+      "emuliciousPath": "/Applications/Emulicious/Emulicious.jar",
+      "program": "${workspaceFolder}/build/gbc/portfolio.gbc",
+      "port": 58870,
+      "stopOnEntry": true,
+      "preLaunchTask": "Game Boy Color - Watch"
     }
   ]
 }
