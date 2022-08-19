@@ -50,11 +50,15 @@ megaduck:
 
 sms-clean:
 	${MAKE} clean-target EXT=sms
+sms-watch:
+	${MAKE} watch-target EXT=sms
 sms:
 	${MAKE} build-target PORT=z80 PLAT=sms EXT=sms
 
 
 gg-clean:
 	${MAKE} clean-target EXT=gg
+gg-watch:
+	${MAKE} watch-target EXT=gg
 gg:
 	${MAKE} build-target PORT=z80 PLAT=gg EXT=gg
