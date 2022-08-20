@@ -19,7 +19,7 @@ clean-target:
 gb-clean:
 	${MAKE} clean-target EXT=gb
 gb-watch:
-	${MAKE} watch-target EXT=gb
+	${MAKE} watch-target PORT=gbz80 PLAT=gb EXT=gb
 gb:
 	${MAKE} build-target PORT=gbz80 PLAT=gb EXT=gb
 
@@ -27,7 +27,7 @@ gb:
 gbc-clean:
 	${MAKE} clean-target EXT=gbc
 gbc-watch:
-	${MAKE} watch-target EXT=gbc
+	${MAKE} watch-target PORT=gbz80 PLAT=gb EXT=gbc
 gbc:
 	${MAKE} build-target PORT=gbz80 PLAT=gb EXT=gbc
 
@@ -35,7 +35,7 @@ gbc:
 pocket-clean:
 	${MAKE} clean-target EXT=pocket
 pocket-watch:
-	${MAKE} watch-target EXT=pocket
+	${MAKE} watch-target PORT=gbz80 PLAT=ap EXT=pocket
 pocket:
 	${MAKE} build-target PORT=gbz80 PLAT=ap EXT=pocket
 
@@ -43,7 +43,7 @@ pocket:
 megaduck-clean:
 	${MAKE} clean-target EXT=duck
 megaduck-watch:
-	${MAKE} watch-target EXT=duck
+	${MAKE} watch-target PORT=gbz80 PLAT=duck EXT=duck
 megaduck:
 	${MAKE} build-target PORT=gbz80 PLAT=duck EXT=duck
 
@@ -51,7 +51,7 @@ megaduck:
 sms-clean:
 	${MAKE} clean-target EXT=sms
 sms-watch:
-	${MAKE} watch-target EXT=sms
+	${MAKE} watch-target PORT=z80 PLAT=sms EXT=sms
 sms:
 	${MAKE} build-target PORT=z80 PLAT=sms EXT=sms
 
@@ -59,6 +59,6 @@ sms:
 gg-clean:
 	${MAKE} clean-target EXT=gg
 gg-watch:
-	${MAKE} watch-target EXT=gg
+	${MAKE} watch-target PORT=z80 PLAT=gg EXT=gg
 gg:
 	${MAKE} build-target PORT=z80 PLAT=gg EXT=gg
