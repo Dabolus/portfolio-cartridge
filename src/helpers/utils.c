@@ -34,8 +34,7 @@ void drawframe(
   set_bkg_tile_xy(x, y, top_left_corner_tile);
 }
 
-void drawtext(uint8_t start_x, uint8_t start_y, uint8_t max_width,
-              const unsigned char *text) {
+void drawtext(uint8_t start_x, uint8_t start_y, const unsigned char *text) {
   uint8_t current_text_x = 0;
   uint8_t current_text_y = 0;
   uint8_t current_text_index = 0;

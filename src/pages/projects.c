@@ -18,14 +18,14 @@ void render_current_project() {
   set_bkg_tiles(1, 4, 2, 2, project_icon_tiles);
   // Name
   fill_bkg_rect(4, 4, 15, 2, 0x00);
-  drawtext(4, 4, 15, projects_info[current_project_index].name_data);
+  drawtext(4, 4, projects_info[current_project_index].name_data);
   // Description
   fill_bkg_rect(1, 8, 18, 9, 0x00);
   fill_bkg_rect(1, 6, 18, 1, 0x36);
   fill_bkg_rect(1, 14, 18, 1, 0x32);
-  drawtext(1, 8, 18, projects_info[current_project_index].description_data);
+  drawtext(1, 8, projects_info[current_project_index].description_data);
   // Tags
-  drawtext(1, 15, 18, projects_info[current_project_index].tags_data);
+  drawtext(1, 15, projects_info[current_project_index].tags_data);
 }
 
 void handle_projects_navigation_prev() {
