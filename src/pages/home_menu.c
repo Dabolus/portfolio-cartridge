@@ -18,6 +18,7 @@ struct MenuItem {
   uint8_t text_width;
   const unsigned char *text_data;
   const unsigned char *icon_data;
+  palette_color_t icon_color;
 };
 
 struct MenuItem menu_items[4];
@@ -32,19 +33,26 @@ void update_menu_item_frame(struct MenuItem *menu_item, BOOLEAN selected) {
   }
 }
 
+static const palette_color_t transparent_palette[] = {0, 0, 0, 0};
+
 void update_menu_item_content(struct MenuItem *menu_item, BOOLEAN selected) {
   uint8_t text_x =
       menu_item->x + (MENU_ITEM_WIDTH / 2) - (menu_item->text_width / 2);
   if (selected) {
-    set_bkg_1bpp_data(66, 16, menu_item->icon_data);
-
     // Clear the text area
     cleararea(text_x, menu_item->y + 4, menu_item->text_width, 1);
     // Draw the text one tile higher
     set_bkg_tiles(text_x, menu_item->y + 3, menu_item->text_width, 1,
                   menu_item->text_data);
     // Draw the icon
-    set_bkg_tiles(menu_item->x + 3, menu_item->y + 4, 4, 4, home_menu_icon_map);
+    set_sprite_1bpp_data(0, 16, menu_item->icon_data);
+    set_sprite_palette_entry(0, 3, menu_item->icon_color);
+    for (uint8_t i = 0; i < 16; i++) {
+      set_sprite_tile(i, i);
+      move_sprite(i, ((menu_item->x + 3 + (i % 4)) * 8) + 8,
+                  ((menu_item->y + 4 + (i / 4)) * 8) + 16);
+    }
+
     fastdelay(1);
     // Clear the new text area
     cleararea(text_x, menu_item->y + 3, menu_item->text_width, 1);
@@ -52,8 +60,10 @@ void update_menu_item_content(struct MenuItem *menu_item, BOOLEAN selected) {
     set_bkg_tiles(text_x, menu_item->y + 2, menu_item->text_width, 1,
                   menu_item->text_data);
   } else {
-    // Clear the icon area
-    cleararea(menu_item->x + 3, menu_item->y + 4, 4, 4);
+    // Clear the icon
+    for (uint8_t i = 0; i < 16; i++) {
+      hide_sprite(i);
+    }
     // Clear the text area
     cleararea(text_x, menu_item->y + 2, menu_item->text_width, 1);
     // Draw the text one tile lower
@@ -104,6 +114,7 @@ void home_menu_setup() {
   menu_item_about.text_width = ARRAY_LEN(about_me);
   menu_item_about.text_data = about_me;
   menu_item_about.icon_data = home_menu_about_icon_data;
+  menu_item_about.icon_color = RGB8(25, 118, 210);
   menu_items[MENU_OPTION_ABOUT] = menu_item_about;
 
   struct MenuItem menu_item_contacts;
@@ -113,6 +124,7 @@ void home_menu_setup() {
   menu_item_contacts.text_width = ARRAY_LEN(contacts);
   menu_item_contacts.text_data = contacts;
   menu_item_contacts.icon_data = home_menu_contacts_icon_data;
+  menu_item_contacts.icon_color = RGB8(141, 110, 99);
   menu_items[MENU_OPTION_CONTACTS] = menu_item_contacts;
 
   struct MenuItem menu_item_projects;
@@ -122,6 +134,7 @@ void home_menu_setup() {
   menu_item_projects.text_width = ARRAY_LEN(projects);
   menu_item_projects.text_data = projects;
   menu_item_projects.icon_data = home_menu_projects_icon_data;
+  menu_item_projects.icon_color = RGB8(8, 127, 35);
   menu_items[MENU_OPTION_PROJECTS] = menu_item_projects;
 
   struct MenuItem menu_item_skills;
@@ -131,20 +144,23 @@ void home_menu_setup() {
   menu_item_skills.text_width = ARRAY_LEN(skills);
   menu_item_skills.text_data = skills;
   menu_item_skills.icon_data = home_menu_skills_icon_data;
+  menu_item_skills.icon_color = RGB8(216, 27, 96);
   menu_items[MENU_OPTION_SKILLS] = menu_item_skills;
 
+  // First, setup all the menu options as if none of them is selected
   // About me
-  update_menu_item(&menu_items[MENU_OPTION_ABOUT],
-                   current_menu_option == MENU_OPTION_ABOUT);
+  update_menu_item(&menu_items[MENU_OPTION_ABOUT], FALSE);
   // Contacts
-  update_menu_item(&menu_items[MENU_OPTION_CONTACTS],
-                   current_menu_option == MENU_OPTION_CONTACTS);
+  update_menu_item(&menu_items[MENU_OPTION_CONTACTS], FALSE);
   // Projects
-  update_menu_item(&menu_items[MENU_OPTION_PROJECTS],
-                   current_menu_option == MENU_OPTION_PROJECTS);
+  update_menu_item(&menu_items[MENU_OPTION_PROJECTS], FALSE);
   // Skills
-  update_menu_item(&menu_items[MENU_OPTION_SKILLS],
-                   current_menu_option == MENU_OPTION_SKILLS);
+  update_menu_item(&menu_items[MENU_OPTION_SKILLS], FALSE);
+
+  // Then, play the animation on the currently selected option
+  update_menu_item(&menu_items[current_menu_option], TRUE);
+
+  SHOW_SPRITES;
 }
 
 void home_menu_loop(uint8_t *current_loop_count, uint8_t keys) {
@@ -165,5 +181,7 @@ void home_menu_loop(uint8_t *current_loop_count, uint8_t keys) {
   throttlekey(keys, J_DOWN, &handle_menu_navigation_down);
   throttlekey(keys, J_LEFT, &handle_menu_navigation_left);
 }
+
+void home_menu_unload() { HIDE_SPRITES; }
 
 #endif

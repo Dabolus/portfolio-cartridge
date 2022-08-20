@@ -14,6 +14,9 @@
 enum Page current_page = HOME_HEADER;
 
 void init_page(enum Page page) {
+  if (current_page == HOME_MENU) {
+    home_menu_unload();
+  }
   current_page = page;
   switch (page) {
   case HOME_HEADER:
