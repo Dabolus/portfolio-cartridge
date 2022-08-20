@@ -4,6 +4,10 @@
 
 #include <gbdk/platform.h>
 
+#define CENTER_X(x)                                                            \
+  ((DEVICE_SCREEN_WIDTH - x) % 2 ? (DEVICE_SCREEN_WIDTH - x) / 2 + 1           \
+                                 : (DEVICE_SCREEN_WIDTH - x) / 2)
+
 extern void fastdelay(uint8_t num_loops);
 
 extern void cleararea(uint8_t x, uint8_t y, uint8_t w, uint8_t h);
