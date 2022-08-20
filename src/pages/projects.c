@@ -47,6 +47,8 @@ void projects_setup() {
 }
 
 void projects_loop(uint8_t *current_loop_count, uint8_t keys) {
+  *current_loop_count = 0;
+
   if (keys & J_B) {
     set_page(HOME_MENU);
   }
