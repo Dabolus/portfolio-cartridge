@@ -10,6 +10,7 @@
 #include "pages/projects.h"
 #include "pages/skills.h"
 #include <gbdk/platform.h>
+#include <stdio.h>
 
 static const palette_color_t light_palette[] = {
     RGB8(250, 250, 250),
@@ -28,15 +29,20 @@ static const palette_color_t dark_palette[] = {
 BOOLEAN is_dark_theme = FALSE;
 
 void handle_theme_change() {
-  // Reverse the palette bits (for Game Boy Classic)
-  BGP_REG = ~BGP_REG;
-  // Switch between the two color palettes (for Game Boy Color)
-  is_dark_theme = !is_dark_theme;
-  set_bkg_palette(0, 1, is_dark_theme ? dark_palette : light_palette);
+  if (DEVICE_SUPPORTS_COLOR) {
+    // Switch between the two color palettes (for Game Boy Color)
+    is_dark_theme = !is_dark_theme;
+    set_bkg_palette(0, 1, is_dark_theme ? dark_palette : light_palette);
+  } else {
+    // Reverse the palette bits (for Game Boy Classic)
+    BGP_REG = ~BGP_REG;
+  }
 }
 
 void main() {
-  set_bkg_palette(0, 1, light_palette);
+  if (DEVICE_SUPPORTS_COLOR) {
+    set_bkg_palette(0, 1, light_palette);
+  }
   // Load font in the background data (2 colors -> 1 bit per pixel)
   set_bkg_1bpp_data(0, 50, font_early_game_boy);
   init_page(HOME_HEADER);
