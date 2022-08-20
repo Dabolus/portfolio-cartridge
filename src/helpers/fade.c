@@ -6,12 +6,14 @@
 #include <gbdk/platform.h>
 
 void fade_gb(uint8_t to, uint8_t duration, BOOLEAN reverse) {
+#ifdef NINTENDO
   uint16_t start =
       reverse ? ((uint16_t)BGP_REG << 8) | to : ((uint16_t)to << 8) | BGP_REG;
   for (uint8_t i = 1; i != 5 && BGP_REG != to; ++i) {
     BGP_REG = start >> ((reverse ? 4 - i : i) << 1);
     fastdelay(duration / 4);
   }
+#endif
 }
 
 void fade_gbc(palette_color_t from[4], palette_color_t to[4],
@@ -35,9 +37,11 @@ void fadeout(uint8_t duration) {
   if (DEVICE_SUPPORTS_COLOR) {
     // TODO: implement this
   } else {
+#ifdef NINTENDO
     previous_gb_bg_palette = BGP_REG;
     // Fade to light if theme is light, otherwise fade to dark
     fade_gb(BGP_REG == 0xE4 ? 0xFF : 0x00, duration, FALSE);
+#endif
   }
   // Don't use wait_vbl_done() until display is turned on again
   DISPLAY_OFF;

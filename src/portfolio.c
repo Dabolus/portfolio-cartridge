@@ -34,8 +34,10 @@ void handle_theme_change() {
     is_dark_theme = !is_dark_theme;
     set_bkg_palette(0, 1, is_dark_theme ? dark_palette : light_palette);
   } else {
+#ifdef NINTENDO
     // Reverse the palette bits (for Game Boy Classic)
     BGP_REG = ~BGP_REG;
+#endif
   }
 }
 
