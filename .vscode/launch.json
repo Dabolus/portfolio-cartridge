@@ -23,6 +23,26 @@
       "port": 58870,
       "stopOnEntry": true,
       "preLaunchTask": "Game Boy Color - Watch"
+    },
+    {
+      "type": "emulicious-debugger",
+      "request": "launch",
+      "name": "Launch in Emulicious (Sega Master System)",
+      "emuliciousPath": "/Applications/Emulicious/Emulicious.jar",
+      "program": "${workspaceFolder}/build/sms/portfolio.sms",
+      "port": 58870,
+      "stopOnEntry": true,
+      "preLaunchTask": "Sega Master System - Watch"
+    },
+    {
+      "type": "emulicious-debugger",
+      "request": "launch",
+      "name": "Launch in Emulicious (Game Gear)",
+      "emuliciousPath": "/Applications/Emulicious/Emulicious.jar",
+      "program": "${workspaceFolder}/build/gg/portfolio.gg",
+      "port": 58870,
+      "stopOnEntry": true,
+      "preLaunchTask": "Game Gear - Watch"
     }
   ]
 }
