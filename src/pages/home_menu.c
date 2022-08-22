@@ -36,8 +36,9 @@ void update_menu_item_frame(struct MenuItem *menu_item, BOOLEAN selected) {
 static const palette_color_t transparent_palette[] = {0, 0, 0, 0};
 
 void update_menu_item_content(struct MenuItem *menu_item, BOOLEAN selected) {
-  uint8_t text_x =
+  const uint8_t text_x =
       menu_item->x + (MENU_ITEM_WIDTH / 2) - (menu_item->text_width / 2);
+  const uint8_t icon_x = menu_item->x + (MENU_ITEM_WIDTH / 2) - 2;
   if (selected) {
     // Clear the text area
     cleararea(text_x, menu_item->y + 4, menu_item->text_width, 1);
@@ -49,7 +50,7 @@ void update_menu_item_content(struct MenuItem *menu_item, BOOLEAN selected) {
     set_sprite_palette_entry(0, 3, menu_item->icon_color);
     for (uint8_t i = 0; i < 16; i++) {
       set_sprite_tile(i, i);
-      move_sprite(i, ((menu_item->x + 3 + (i % 4)) * 8) + 8,
+      move_sprite(i, ((icon_x + (i % 4)) * 8) + 8,
                   ((menu_item->y + 4 + (i / 4)) * 8) + 16);
     }
 
