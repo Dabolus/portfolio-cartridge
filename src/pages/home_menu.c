@@ -182,6 +182,13 @@ void home_menu_loop(uint8_t *current_loop_count, uint8_t keys) {
   throttlekey(keys, J_LEFT, &handle_menu_navigation_left);
 }
 
-void home_menu_unload() { HIDE_SPRITES; }
+void home_menu_unload() {
+  // Hide the sprite layer
+  HIDE_SPRITES;
+  // Hide the menu icons tiles
+  for (uint8_t i = 0; i < 16; ++i) {
+    hide_sprite(i);
+  }
+}
 
 #endif
