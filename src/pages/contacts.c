@@ -20,36 +20,38 @@ void contacts_setup() {
 
   // Socials
   // Google Developers
-  set_bkg_data(100, 4, google_developers_data);
-  set_bkg_tiles(0, 4, 2, 2, google_developers_tiles);
-  set_bkg_tiles(2, 5, ARRAY_LEN(gga), 1, gga);
+  set_sprite_data(0, 4, google_developers_data);
+  set_sprite_tiles(4, 28, 2, 2, google_developers_tiles);
+  set_bkg_tiles(3, 4, ARRAY_LEN(gga), 1, gga);
   // GitHub
-  set_bkg_data(104, 4, github_data);
-  set_bkg_tiles(0, 6, 2, 2, github_tiles);
-  set_bkg_tiles(2, 7, ARRAY_LEN(dabolus), 1, dabolus);
+  set_sprite_data(4, 4, github_data);
+  set_sprite_tiles(4, 44, 2, 2, github_tiles);
+  set_bkg_tiles(3, 6, ARRAY_LEN(dabolus), 1, dabolus);
   // Twitter
-  set_bkg_data(108, 4, twitter_data);
-  set_bkg_tiles(0, 8, 2, 2, twitter_tiles);
-  set_bkg_tiles(2, 9, ARRAY_LEN(dabolus), 1, dabolus);
+  set_sprite_data(8, 4, twitter_data);
+  set_sprite_tiles(4, 60, 2, 2, twitter_tiles);
+  set_bkg_tiles(3, 8, ARRAY_LEN(dabolus), 1, dabolus);
   // Telegram
-  set_bkg_data(112, 4, telegram_data);
-  set_bkg_tiles(0, 10, 2, 2, telegram_tiles);
-  set_bkg_tiles(2, 11, ARRAY_LEN(dabolus), 1, dabolus);
+  set_sprite_data(12, 4, telegram_data);
+  set_sprite_tiles(4, 76, 2, 2, telegram_tiles);
+  set_bkg_tiles(3, 10, ARRAY_LEN(dabolus), 1, dabolus);
   // Polywork
-  set_bkg_data(116, 4, polywork_data);
-  set_bkg_tiles(0, 12, 2, 2, polywork_tiles);
-  set_bkg_tiles(2, 13, ARRAY_LEN(dabolus), 1, dabolus);
+  set_sprite_data(16, 4, polywork_data);
+  set_sprite_tiles(4, 92, 2, 2, polywork_tiles);
+  set_bkg_tiles(3, 12, ARRAY_LEN(dabolus), 1, dabolus);
   // LinkedIn
-  set_bkg_data(120, 4, linkedin_data);
-  set_bkg_tiles(0, 14, 2, 2, linkedin_tiles);
-  set_bkg_tiles(2, 15, ARRAY_LEN(giorgio), 1, giorgio);
-  set_bkg_tiles(2 + ARRAY_LEN(giorgio), 15, ARRAY_LEN(garasto), 1, garasto);
+  set_sprite_data(20, 4, linkedin_data);
+  set_sprite_tiles(4, 108, 2, 2, linkedin_tiles);
+  set_bkg_tiles(3, 14, ARRAY_LEN(giorgio), 1, giorgio);
+  set_bkg_tiles(3 + ARRAY_LEN(giorgio), 14, ARRAY_LEN(garasto), 1, garasto);
   // Facebook
-  set_bkg_data(124, 4, facebook_data);
-  set_bkg_tiles(0, 16, 2, 2, facebook_tiles);
-  set_bkg_tiles(2, 17, ARRAY_LEN(giorgio), 1, giorgio);
-  set_bkg_tile_xy(2 + ARRAY_LEN(giorgio), 17, 0x08);
-  set_bkg_tiles(3 + ARRAY_LEN(giorgio), 17, ARRAY_LEN(garasto), 1, garasto);
+  set_sprite_data(24, 4, facebook_data);
+  set_sprite_tiles(4, 124, 2, 2, facebook_tiles);
+  set_bkg_tiles(3, 16, ARRAY_LEN(giorgio), 1, giorgio);
+  set_bkg_tile_xy(3 + ARRAY_LEN(giorgio), 16, 0x08);
+  set_bkg_tiles(4 + ARRAY_LEN(giorgio), 16, ARRAY_LEN(garasto), 1, garasto);
+
+  SHOW_SPRITES;
 }
 
 void contacts_loop(uint8_t *current_loop_count, uint8_t keys) {
@@ -57,6 +59,16 @@ void contacts_loop(uint8_t *current_loop_count, uint8_t keys) {
 
   if (keys & J_B) {
     set_page(HOME_MENU);
+  }
+}
+
+void contacts_unload() {
+  // Hide the sprite layer
+  HIDE_SPRITES;
+  // Hide all the socials tiles (we use last Facebook tile as limit as it is the
+  // last social tile loaded)
+  for (uint8_t i = 0; i <= facebook_tiles[3]; ++i) {
+    hide_sprite(i);
   }
 }
 

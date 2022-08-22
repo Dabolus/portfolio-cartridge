@@ -43,4 +43,7 @@ extern void scroller_row_down();
 
 extern void scroller_page_down();
 
+extern void set_sprite_tiles(uint8_t x, uint8_t y, uint8_t w, uint8_t h,
+                             const uint8_t *tiles);
+
 #endif

@@ -8,4 +8,6 @@ extern void contacts_setup(void);
 
 extern void contacts_loop(uint8_t *current_loop_count, uint8_t keys);
 
+extern void contacts_unload(void);
+
 #endif

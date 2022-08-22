@@ -14,10 +14,14 @@
 enum Page current_page = HOME_HEADER;
 
 void init_page(enum Page page) {
-  if (current_page == HOME_MENU) {
+  switch (current_page) {
+  case HOME_MENU:
     home_menu_unload();
+    break;
+  case CONTACTS:
+    contacts_unload();
+    break;
   }
-  current_page = page;
   switch (page) {
   case HOME_HEADER:
     home_header_setup();
@@ -38,6 +42,7 @@ void init_page(enum Page page) {
     skills_setup();
     break;
   }
+  current_page = page;
 }
 
 void set_page(enum Page page) {

@@ -111,4 +111,15 @@ void scroller_page_down() {
   }
 }
 
+void set_sprite_tiles(uint8_t x, uint8_t y, uint8_t w, uint8_t h,
+                      const uint8_t *tiles) {
+  for (uint8_t i = 0; i < h; ++i) {
+    for (uint8_t j = 0; j < w; ++j) {
+      const uint8_t sprite_tile = tiles[i * w + j];
+      set_sprite_tile(sprite_tile, sprite_tile);
+      move_sprite(sprite_tile, x + (j * 8) + 8, y + (i * 8) + 16);
+    }
+  }
+}
+
 #endif
