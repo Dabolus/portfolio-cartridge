@@ -10,7 +10,6 @@
 #include "pages/projects.h"
 #include "pages/skills.h"
 #include <gbdk/platform.h>
-#include <stdio.h>
 
 static const palette_color_t light_palette[] = {
     RGB8(250, 250, 250),
