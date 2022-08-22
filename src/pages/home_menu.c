@@ -47,7 +47,7 @@ void update_menu_item_content(struct MenuItem *menu_item, BOOLEAN selected) {
                   menu_item->text_data);
     // Draw the icon
     set_sprite_1bpp_data(0, 16, menu_item->icon_data);
-    set_sprite_palette_entry(0, 3, menu_item->icon_color);
+    set_sprite_palette_entry(1, 3, menu_item->icon_color);
     for (uint8_t i = 0; i < 16; i++) {
       set_sprite_tile(i, i);
       move_sprite(i, ((icon_x + (i % 4)) * 8) + 8,
@@ -160,6 +160,11 @@ void home_menu_setup() {
 
   // Then, play the animation on the currently selected option
   update_menu_item(&menu_items[current_menu_option], TRUE);
+
+  // Make sure the menu icons use the second color palette
+  for (uint8_t i = 0; i < 16; ++i) {
+    set_sprite_prop(i, 1);
+  }
 
   SHOW_SPRITES;
 }
