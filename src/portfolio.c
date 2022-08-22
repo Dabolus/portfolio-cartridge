@@ -12,16 +12,16 @@
 #include <gbdk/platform.h>
 
 static const palette_color_t light_palette[] = {
-    RGB8(250, 250, 250),
-    RGB8(240, 240, 240),
-    RGB8(220, 220, 220),
+    RGB8(255, 255, 255),
+    RGB8(72, 72, 72),
+    RGB8(48, 48, 48),
     RGB8(32, 32, 32),
 };
 
 static const palette_color_t dark_palette[] = {
-    RGB8(33, 33, 33),
+    RGB8(32, 32, 32),
     RGB8(48, 48, 48),
-    RGB8(73, 73, 73),
+    RGB8(72, 72, 72),
     RGB8(255, 255, 255),
 };
 
