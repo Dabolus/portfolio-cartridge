@@ -31,7 +31,10 @@ void handle_theme_change() {
   if (DEVICE_SUPPORTS_COLOR) {
     // Switch between the two color palettes (for Game Boy Color)
     is_dark_theme = !is_dark_theme;
-    set_bkg_palette(0, 1, is_dark_theme ? dark_palette : light_palette);
+    const palette_color_t *new_palette =
+        is_dark_theme ? dark_palette : light_palette;
+    set_bkg_palette(0, 1, new_palette);
+    set_sprite_palette(0, 1, new_palette);
   } else {
 #ifdef NINTENDO
     // Reverse the background and sprites palettes bits (for Game Boy Classic)
@@ -44,6 +47,7 @@ void handle_theme_change() {
 void main() {
   if (DEVICE_SUPPORTS_COLOR) {
     set_bkg_palette(0, 1, light_palette);
+    set_sprite_palette(0, 1, light_palette);
   }
   // Load font in the background data (2 colors -> 1 bit per pixel)
   set_bkg_1bpp_data(0, 50, font_early_game_boy);
