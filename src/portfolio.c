@@ -11,30 +11,19 @@
 #include "pages/skills.h"
 #include <gbdk/platform.h>
 
-static const palette_color_t light_palette[] = {
-    RGB8(255, 255, 255),
-    RGB8(72, 72, 72),
-    RGB8(48, 48, 48),
-    RGB8(32, 32, 32),
-};
-
-static const palette_color_t dark_palette[] = {
-    RGB8(32, 32, 32),
-    RGB8(48, 48, 48),
-    RGB8(72, 72, 72),
-    RGB8(255, 255, 255),
-};
-
 BOOLEAN is_dark_theme = FALSE;
 
 void handle_theme_change() {
   if (DEVICE_SUPPORTS_COLOR) {
-    // Switch between the two color palettes (for Game Boy Color)
+    // Replace the colors in the default palette with the ones from the theme in
+    // the proper order
     is_dark_theme = !is_dark_theme;
-    const palette_color_t *new_palette =
-        is_dark_theme ? dark_palette : light_palette;
-    set_bkg_palette(0, 1, new_palette);
-    set_sprite_palette(0, 1, new_palette);
+    for (uint8_t i = 0; i < ARRAY_LEN(rgb_theme_colors); ++i) {
+      const uint8_t color_index =
+          is_dark_theme ? ARRAY_LEN(rgb_theme_colors) - i - 1 : i;
+      set_bkg_palette_entry(0, i, rgb_theme_colors[color_index]);
+      set_sprite_palette_entry(0, i, rgb_theme_colors[color_index]);
+    }
   } else {
 #ifdef NINTENDO
     // Reverse the background and sprites palettes bits (for Game Boy Classic)
@@ -46,8 +35,10 @@ void handle_theme_change() {
 
 void main() {
   if (DEVICE_SUPPORTS_COLOR) {
-    set_bkg_palette(0, 1, light_palette);
-    set_sprite_palette(0, 1, light_palette);
+    for (uint8_t i = 0; i < ARRAY_LEN(rgb_theme_colors); ++i) {
+      set_bkg_palette_entry(0, i, rgb_theme_colors[i]);
+      set_sprite_palette_entry(0, i, rgb_theme_colors[i]);
+    }
   }
   // Load font in the background data (2 colors -> 1 bit per pixel)
   set_bkg_1bpp_data(0, 50, font_early_game_boy);
