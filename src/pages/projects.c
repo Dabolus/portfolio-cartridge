@@ -14,8 +14,12 @@ uint8_t current_project_index = 0;
 
 void render_current_project() {
   // Icon
-  set_bkg_1bpp_data(58, 4, projects_info[current_project_index].icon_data);
-  set_bkg_tiles(1, 4, 2, 2, project_icon_tiles);
+  set_sprite_data(0, 4, projects_info[current_project_index].icon_data);
+  for (uint8_t i = 0; i < 4; i++) {
+    set_sprite_prop(i, 1);
+  }
+  set_sprite_palette(1, 1, projects_info[current_project_index].icon_palette);
+  set_sprite_tiles(8, 32, 2, 2, project_icon_tiles);
   // Name
   fill_bkg_rect(4, 4, 15, 2, 0x00);
   drawtext(4, 4, projects_info[current_project_index].name_data);
@@ -44,6 +48,8 @@ void projects_setup() {
             0x34, 0x35, 0x36, 0x37, 0x38, 0x39);
   get_projects(projects_info);
   render_current_project();
+
+  SHOW_SPRITES;
 }
 
 void projects_loop(uint8_t *current_loop_count, uint8_t keys) {
@@ -57,6 +63,15 @@ void projects_loop(uint8_t *current_loop_count, uint8_t keys) {
   throttlekey(keys, J_RIGHT, &handle_projects_navigation_next);
   throttlekey(keys, J_DOWN, &handle_projects_navigation_next);
   throttlekey(keys, J_LEFT, &handle_projects_navigation_prev);
+}
+
+void projects_unload() {
+  // Hide the sprite layer
+  HIDE_SPRITES;
+  // Hide the sprites used by the projects icons
+  for (uint8_t i = 0; i < 4; ++i) {
+    hide_sprite(i);
+  }
 }
 
 #endif

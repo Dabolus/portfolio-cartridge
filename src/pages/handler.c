@@ -21,6 +21,9 @@ void init_page(enum Page page) {
   case CONTACTS:
     contacts_unload();
     break;
+  case PROJECTS:
+    projects_unload();
+    break;
   }
   switch (page) {
   case HOME_HEADER:
