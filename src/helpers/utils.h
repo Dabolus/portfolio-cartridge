@@ -46,4 +46,6 @@ extern void scroller_page_down();
 extern void set_sprite_tiles(uint8_t x, uint8_t y, uint8_t w, uint8_t h,
                              const uint8_t *tiles);
 
+extern uint8_t force_value_in_range(uint8_t value, uint8_t min, uint8_t max);
+
 #endif

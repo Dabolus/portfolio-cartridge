@@ -122,4 +122,14 @@ void set_sprite_tiles(uint8_t x, uint8_t y, uint8_t w, uint8_t h,
   }
 }
 
+uint8_t force_value_in_range(uint8_t value, uint8_t min, uint8_t max) {
+  if (value < min) {
+    return min;
+  }
+  if (value > max) {
+    return max;
+  }
+  return value;
+}
+
 #endif

@@ -3,15 +3,9 @@
 
 #include "fade.h"
 #include "text.h"
+#include "theme.h"
 #include "utils.h"
 #include <gbdk/platform.h>
-
-const palette_color_t rgb_theme_colors[4] = {
-    RGB8(255, 255, 255),
-    RGB8(72, 72, 72),
-    RGB8(48, 48, 48),
-    RGB8(32, 32, 32),
-};
 
 void fade_gb(uint8_t to, uint8_t duration, BOOLEAN reverse) {
 #ifdef NINTENDO
@@ -24,9 +18,16 @@ void fade_gb(uint8_t to, uint8_t duration, BOOLEAN reverse) {
 #endif
 }
 
-void fade_gbc(palette_color_t from[4], palette_color_t to[4],
-              uint8_t duration) {
-  // TODO: implement this
+void fade_gbc(uint8_t duration, BOOLEAN reverse) {
+  for (uint8_t i = 1; i != 4; ++i) {
+    for (uint8_t j = 0; j != 4; ++j) {
+      const uint8_t offset = reverse ? 3 - i : i;
+      const uint8_t color_index =
+          force_value_in_range(offset + j, 0, ARRAY_LEN(current_theme) - 1);
+      set_bkg_palette_entry(0, j, current_theme[color_index]);
+    }
+    fastdelay(duration / 4);
+  }
 }
 
 uint8_t previous_gb_bg_palette;
@@ -43,15 +44,7 @@ uint8_t previous_gb_bg_palette;
  */
 void fadeout(uint8_t duration) {
   if (DEVICE_SUPPORTS_COLOR) {
-    for (uint8_t i = 1; i != 4; ++i) {
-      for (uint8_t j = 0; j != 4; ++j) {
-        const uint8_t color_index = (i + j) < ARRAY_LEN(rgb_theme_colors)
-                                        ? i + j
-                                        : ARRAY_LEN(rgb_theme_colors) - 1;
-        set_bkg_palette_entry(0, j, rgb_theme_colors[color_index]);
-      }
-      fastdelay(duration / 4);
-    }
+    fade_gbc(duration, FALSE);
   } else {
 #ifdef NINTENDO
     previous_gb_bg_palette = BGP_REG;
@@ -76,15 +69,7 @@ void fadein(uint8_t duration) {
   // Make sure the display is turned on so that wait_vbl_done() can be used
   DISPLAY_ON;
   if (DEVICE_SUPPORTS_COLOR) {
-    for (uint8_t i = 2; i != 255; --i) {
-      for (uint8_t j = 0; j != 4; ++j) {
-        const uint8_t color_index = (i + j) < ARRAY_LEN(rgb_theme_colors)
-                                        ? i + j
-                                        : ARRAY_LEN(rgb_theme_colors) - 1;
-        set_bkg_palette_entry(0, j, rgb_theme_colors[color_index]);
-      }
-      fastdelay(duration / 4);
-    }
+    fade_gbc(duration, TRUE);
   } else {
     fade_gb(previous_gb_bg_palette, duration, TRUE);
   }
