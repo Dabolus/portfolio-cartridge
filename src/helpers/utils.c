@@ -102,6 +102,14 @@ void scroller_row_down() {
   ++scroller_current_row;
 }
 
+void scroller_page_up() {
+  if ((int8_t)scroller_current_row - scroller_config.height < 0) {
+    scroller_current_row = 0;
+    return;
+  }
+  scroller_current_row -= scroller_config.height;
+}
+
 void scroller_page_down() {
   scroller_current_row += scroller_config.height;
   if (scroller_current_row >

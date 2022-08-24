@@ -19,6 +19,11 @@ void handle_skills_scroll_row_down() {
   scroller_draw(skills_tiles);
 }
 
+void handle_skills_scroll_page_up() {
+  scroller_page_up();
+  scroller_draw(skills_tiles);
+}
+
 void handle_skills_scroll_page_down() {
   scroller_page_down();
   scroller_draw(skills_tiles);
@@ -46,8 +51,10 @@ void skills_loop(uint8_t *current_loop_count, uint8_t keys) {
   // Allow scrolling by one row by pressing up or down
   throttlekey(keys, J_UP, &handle_skills_scroll_row_up);
   throttlekey(keys, J_DOWN, &handle_skills_scroll_row_down);
-  // Allow scrolling by one page by pressing A
-  throttlekey(keys, J_A, &handle_skills_scroll_page_down);
+  // Allow scrolling up by one page by pressing left
+  throttlekey(keys, J_LEFT, &handle_skills_scroll_page_up);
+  // Allow scrolling down by one page by pressing right or A
+  throttlekey(keys, J_RIGHT | J_A, &handle_skills_scroll_page_down);
 }
 
 #endif

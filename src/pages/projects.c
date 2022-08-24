@@ -59,10 +59,8 @@ void projects_loop(uint8_t *current_loop_count, uint8_t keys) {
     set_page(HOME_MENU);
   }
 
-  throttlekey(keys, J_UP, &handle_projects_navigation_prev);
-  throttlekey(keys, J_RIGHT, &handle_projects_navigation_next);
-  throttlekey(keys, J_DOWN, &handle_projects_navigation_next);
-  throttlekey(keys, J_LEFT, &handle_projects_navigation_prev);
+  throttlekey(keys, J_UP | J_LEFT, &handle_projects_navigation_prev);
+  throttlekey(keys, J_RIGHT | J_DOWN, &handle_projects_navigation_next);
 }
 
 void projects_unload() {
