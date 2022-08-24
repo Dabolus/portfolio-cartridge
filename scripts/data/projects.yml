@@ -13,7 +13,13 @@
     - Node.js
   icon:
     svg: images/projects/ancillapp.svg
-    pixelart: 0503030500080F1FA0C0C0A00000F0F00701010101010000E0808080C0C0C0C0
+    pixelart:
+      bitmap: 0505030303030505000008080F0F1F1FA0A0C0C0C0C0A0A000000000F0F0F0F007070101010101010101010100000000E0E0808080808080C0C0C0C0C0C0C0C0
+      colors:
+        - '#557892'
+        -
+        -
+        -
     placeholder:
       data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0
       0 256 256'%3e%3cfilter id='b'%3e%3cfeGaussianBlur stdDeviation='12'/%3e%3c/filter%3e%3cpath
@@ -43,7 +49,13 @@
     jpg: images/projects/coc-troop-creator.jpg
     webp: images/projects/coc-troop-creator.webp
     jxl: images/projects/coc-troop-creator.jxl
-    pixelart: 0708704040404040E010CEE2FAFAFAFA4040404020100E01FAFAFAF2C4186080
+    pixelart:
+      bitmap: 07070F087F707F407F407F407F407F40E0E010F00EFE02FE02FE02FE02FE02FE7F407F407F407F403F201F100F0E010102FE02FE02FE02FE04FC18F860E08080
+      colors:
+        - '#ffbe5a'
+        - '#c80a14'
+        - '#785a3c'
+        -
     placeholder:
       data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0
       0 256 256'%3e%3cfilter id='b'%3e%3cfeGaussianBlur stdDeviation='12'/%3e%3c/filter%3e%3cpath
@@ -77,7 +89,13 @@
     jpg: images/projects/cr-card-maker.jpg
     webp: images/projects/cr-card-maker.webp
     jxl: images/projects/cr-card-maker.jxl
-    pixelart: 01027C435A54505380403EC25A2A0ACA5C50534C23100E013A0ACA32C4186080
+    pixelart:
+      bitmap: 010102037C7F437F5B7E5F745F705F73808040C03EFEC2FEDA7EFA2EFA0EFACE5F7C5F705F734F7C233F101F0E0F0101FA3EFA0EFACEF23EC4FC18F860E08080
+      colors:
+        - '#ffbe5a'
+        - '#14466e'
+        - '#bc7630'
+        -
     placeholder:
       data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0
       0 256 256'%3e%3cfilter id='b'%3e%3cfeGaussianBlur stdDeviation='12'/%3e%3c/filter%3e%3cpath
@@ -110,7 +128,13 @@
     jpg: images/projects/dabbext.jpg
     webp: images/projects/dabbext.webp
     jxl: images/projects/dabbext.jxl
-    pixelart: ECA4E400CE4A4E00EEAAEE00EEAAEE00ECA4E400CE4A4E00CE4A4E00ECA4E400
+    pixelart:
+      bitmap: FF13FF5BFF1BFFFFFF31FFB5FFB1FFFFFF11FF55FF11FFFFFF11FF55FF11FFFFFF13FF5BFF1BFFFFFF31FFB5FFB1FFFFFF31FFB5FFB1FFFFFF13FF5BFF1BFFFF
+      colors:
+        - '#000000'
+        -
+        - '#0aa532'
+        -
     placeholder:
       data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0
       0 256 256'%3e%3cfilter id='b'%3e%3cfeGaussianBlur stdDeviation='12'/%3e%3c/filter%3e%3cpath
@@ -140,7 +164,13 @@
     - Preact
   icon:
     svg: images/projects/eudcc-reader.svg
-    pixelart: 3361F7BF1939BFFFCC86EFFDF8FCFDFFFFBF3F1FBFF76133FFFDDCF8FDEF86CC
+    pixelart:
+      bitmap: 33336161F7F7BFBF1F193F39BFBFFFFFCCCC8686EFEFFDFDF8F8FCFCFDFDFFFFFFFFBFBF3F3F1F1FBFBFF7F761613333FFFFFDFDFCDCF8F8FDFDEFEF8686CCCC
+      colors:
+        - '#335984'
+        -
+        - '#ffffff'
+        -
     placeholder:
       data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0
       0 256 256'%3e%3cfilter id='b'%3e%3cfeGaussianBlur stdDeviation='12'/%3e%3c/filter%3e%3cpath
@@ -172,7 +202,13 @@
     - Redux
   icon:
     svg: images/projects/google-assistant-desktop.svg
-    pixelart: 001C3E7F7F7F3E1C000000000430787800000001010100003000E0F0F0F0E000
+    pixelart:
+      bitmap: 00001C1C3E3E7F7F7F7F7F7F3E3E1C1C000000000000000004000030007800780000000000000100010001000000000000300000E000F000F000F000E0000000
+      colors:
+        - '#2887ef'
+        - '#ea4335'
+        - '#fbbc05'
+        -
     placeholder:
       data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0
       0 256 256'%3e%3cfilter id='b'%3e%3cfeGaussianBlur stdDeviation='12'/%3e%3c/filter%3e%3cpath
@@ -204,7 +240,13 @@
     - Vanilla
   icon:
     svg: images/projects/planet-age.svg
-    pixelart: 00001C22434C4831000C52128C6038F8173F380C23502000D010206088000000
+    pixelart:
+      bitmap: 00000000001C003E037F0F7F0F7F1F3E0000000C401E001E808CE0E0F8C0F8001F183F003F070F0F2303700020000000F030F0F0E0E0E0E08088000000000000
+      colors:
+        - '#2c4d67'
+        - '#697900'
+        - '#ff5200'
+        -
     placeholder:
       data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0
       0 256 256'%3e%3cfilter id='b'%3e%3cfeGaussianBlur stdDeviation='12'/%3e%3c/filter%3e%3cpath
@@ -237,7 +279,13 @@
     - .NET
   icon:
     svg: images/projects/win-font-switcher.svg
-    pixelart: 00000F1F18107C380018A4BC24660008100078487B4B48001C3E0838F0C00000
+    pixelart:
+      bitmap: 000000000F0F1F1F181810107C7C383800001818A4A4BCBC242466660000080810100000787848487B7B4B4B484800001C1C3E3E08083838F0F0C0C000000000
+      colors:
+        - '#0079ce'
+        -
+        -
+        -
     placeholder:
       data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0
       0 256 256'%3e%3cfilter id='b'%3e%3cfeGaussianBlur stdDeviation='12'/%3e%3c/filter%3e%3cpath
@@ -265,7 +313,13 @@
   icon:
     png: images/projects/win-xkill.png
     jxl: images/projects/win-xkill.jxl
-    pixelart: FFCEBABFCBFFFFFFFFFFDF6F5FFFFFFFFFFFFFFFFFFFFFFFFFFFDDEBF7EBDDFF
+    pixelart:
+      bitmap: FFFFFFCEFFBAFFBFFFCBFFFFFFFFFFFFFFFFFFFFFFDFFF6FFF5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDDFFEBFFF7FFEBFFDDFFFF
+      colors:
+        - '#0c0c0c'
+        - '#00ff00'
+        - '#f2f2f2'
+        -
     placeholder:
       data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0
       0 256 256'%3e%3cfilter id='b'%3e%3cfeGaussianBlur stdDeviation='12'/%3e%3c/filter%3e%3cpath

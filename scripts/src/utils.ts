@@ -202,3 +202,11 @@ export const computeSizeChart = (
     tiles: textRows,
   };
 };
+
+export const hexColorToRgb = (hex: string): [number, number, number] =>
+  chunk(hex.startsWith('#') ? hex.slice(1) : hex, 2).map(hextet =>
+    parseInt(hextet, 16),
+  ) as [number, number, number];
+
+export const hexColorToRgb8 = (hex: string): string =>
+  `RGB8(${hexColorToRgb(hex).join(', ')})`;

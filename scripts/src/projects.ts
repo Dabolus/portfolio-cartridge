@@ -4,6 +4,7 @@ import {
   autoWrapPhrase,
   autoWrapText,
   chunk,
+  hexColorToRgb8,
   readData,
   textToHex,
 } from './utils';
@@ -43,24 +44,33 @@ ${projectsData
         true,
       ),
     ).concat('0xFF');
-    const hexIcon = chunk(project.icon.pixelart, 2).map(byte => `0x${byte}`);
+    const hexIcon = chunk(project.icon.pixelart.bitmap, 2).map(
+      byte => `0x${byte}`,
+    );
+    const palette = Array.from({ length: 4 }, (_, i) => {
+      const color = project.icon.pixelart.colors[3 - i];
+      return color ? hexColorToRgb8(color) : '0';
+    });
 
     return `const unsigned char ${normalizedId}_name_data[${
       hexName.length
-    }] = {${hexName.join(',')}};
+    }] = {${hexName.join(', ')}};
 const unsigned char ${normalizedId}_description_data[${
       hexDescription.length
-    }] = {${hexDescription.join(',')}};
+    }] = {${hexDescription.join(', ')}};
 const unsigned char ${normalizedId}_tags_data[${
       hexTags.length
-    }] = {${hexTags.join(',')}};
+    }] = {${hexTags.join(', ')}};
 const unsigned char ${normalizedId}_icon_data[${
       hexIcon.length
-    }] = {${hexIcon.join(',')}};`;
+    }] = {${hexIcon.join(', ')}};
+const palette_color_t ${normalizedId}_icon_palette[${
+      palette.length
+    }] = {${palette.join(', ')}};`;
   })
   .join('\n\n')}
 
-const unsigned char project_icon_tiles[4] = {0x3A, 0x3B, 0x3C, 0x3D};
+const unsigned char project_icon_tiles[4] = {0x00, 0x01, 0x02, 0x03};
 
 void get_projects(struct Project* projects) {
 ${projectsData
@@ -72,6 +82,7 @@ ${projectsData
   ${normalizedId}.description_data = ${normalizedId}_description_data;
   ${normalizedId}.tags_data = ${normalizedId}_tags_data;
   ${normalizedId}.icon_data = ${normalizedId}_icon_data;
+  ${normalizedId}.icon_palette = ${normalizedId}_icon_palette;
   projects[${index}] = ${normalizedId};`;
   })
   .join('\n\n')}
@@ -93,6 +104,7 @@ extern struct Project {
   const unsigned char *description_data;
   const unsigned char *tags_data;
   const unsigned char *icon_data;
+  const palette_color_t *icon_palette;
 };
 
 extern const unsigned char project_icon_tiles[4];

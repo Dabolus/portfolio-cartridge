@@ -26,8 +26,11 @@ export interface Icon {
   readonly png?: string;
   readonly webp?: string;
   readonly jxl?: string;
-  readonly pixelart: string;
   readonly placeholder: string;
+  readonly pixelart: {
+    readonly bitmap: string;
+    readonly colors: string[];
+  };
 }
 
 export interface ProjectData {
