@@ -1,15 +1,7 @@
 import path from 'path';
-import { promises as fs } from 'fs';
-import { load } from 'js-yaml';
-import { LanguageSizeData, SkillData } from './model';
+import type { Skill, LanguageSizeData } from '@dabolus/portfolio-data';
 
 export const cachePath = path.join(__dirname, '..', '.cache');
-
-export const readData = async <T = unknown>(fileName: string) => {
-  const absolutePath = path.join(__dirname, '..', 'data', `${fileName}.yml`);
-  const rawContent = await fs.readFile(absolutePath, 'utf8');
-  return load(rawContent) as T;
-};
 
 export const chunk = <T extends string | unknown[]>(
   arr: T,
@@ -124,7 +116,7 @@ export interface ComputeLineChartOptions {
 }
 
 export const computeLineChart = (
-  data: Record<string, SkillData>,
+  data: Record<string, Skill>,
   { maxWidth = 20, startingBarsData = [], mapOffset }: ComputeLineChartOptions,
 ): ChartOutput => {
   const entries = Object.entries(data).filter(([, { score }]) => !!score);

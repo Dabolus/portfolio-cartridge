@@ -1,18 +1,17 @@
 import { promises as fs } from 'fs';
 import path from 'path';
+import { projects } from '@dabolus/portfolio-data';
 import {
   autoWrapPhrase,
   autoWrapText,
   chunk,
   hexColorToRgb8,
-  readData,
   textToHex,
 } from './utils';
 import { screenWidth } from './page-builder';
-import type { ProjectData } from './model';
 
 export const generateProjects = async () => {
-  const projectsData = await readData<ProjectData[]>('projects');
+  const projectsData = Object.entries(projects);
 
   const sourceFile = `#ifndef GENERATED_PROJECTS_C
 #define GENERATED_PROJECTS_C
@@ -21,8 +20,8 @@ export const generateProjects = async () => {
 #include <gbdk/platform.h>
 
 ${projectsData
-  .map(project => {
-    const normalizedId = project.id.replace(/-/g, '_');
+  .map(([id, project]) => {
+    const normalizedId = id.replace(/-/g, '_');
     const hexName = textToHex(
       autoWrapText(project.name, screenWidth - 5),
     ).concat('0xFF');
@@ -31,7 +30,7 @@ ${projectsData
     ).concat('0xFF');
     const hexTags = textToHex(
       autoWrapPhrase(
-        [...project.languages, ...project.frameworks]
+        [...project.languages, ...(project.frameworks || [])]
           .map(val =>
             val
               .replace('JavaScript', 'JS')
@@ -74,8 +73,8 @@ const unsigned char project_icon_tiles[4] = {0x00, 0x01, 0x02, 0x03};
 
 void get_projects(struct Project* projects) {
 ${projectsData
-  .map((project, index) => {
-    const normalizedId = project.id.replace(/-/g, '_');
+  .map(([id], index) => {
+    const normalizedId = id.replace(/-/g, '_');
 
     return `  struct Project ${normalizedId};
   ${normalizedId}.name_data = ${normalizedId}_name_data;

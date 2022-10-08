@@ -1,4 +1,4 @@
-import { LanguageSizeData, SkillData } from './model';
+import type { LanguageSizeData, Skill } from '@dabolus/portfolio-data';
 import { computeLineChart, computeSizeChart, textPageToHex } from './utils';
 
 export const screenWidth = 20;
@@ -40,7 +40,7 @@ export class PageBuilder {
     return this;
   }
 
-  addLineChart(data: Record<string, SkillData>): this {
+  addLineChart(data: Record<string, Skill>): this {
     const { data: chartData, tiles: chartTiles } = computeLineChart(data, {
       mapOffset: this.#options?.mapOffset,
       startingBarsData: this.#data,
