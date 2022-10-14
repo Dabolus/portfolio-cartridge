@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@dabolus/portfolio-data": "^0.4.0",
+    "@dabolus/portfolio-data": "^0.8.0",
     "dotenv": "^16.0.1",
     "js-yaml": "^4.1.0"
   },
