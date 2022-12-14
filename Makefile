@@ -20,7 +20,6 @@ LCCFLAGS += $(LCCFLAGS_$(EXT)) # This adds the current platform specific LCC Fla
 
 LCCFLAGS += -Wl-j -Wm-yoA -Wm-ya4 -autobank -Wb-ext=.rel -Wb-v # MBC + Autobanking related flags
 LCCFLAGS += -debug -Wa-l -Wl-m -Wf--debug -Wl-y -Wl-w -Wm-yS # Debugging related flags
-LCCFLAGS += -Wf--max-allocs-per-node50000 # Optimization related flags
 LCCFLAGS += -v # Verboseness related flags
 
 # You can set the name of the ROM file here
