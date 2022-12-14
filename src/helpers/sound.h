@@ -10,6 +10,8 @@ extern void sound_start(void);
 
 extern void sound_enter(void);
 
+extern void sound_switch(void);
+
 extern void sound_scroll(uint8_t len);
 
 extern void sound_bounce(void);

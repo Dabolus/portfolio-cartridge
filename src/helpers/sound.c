@@ -33,6 +33,13 @@ void sound_enter() {
   NR14_REG = 0x86;
 }
 
+void sound_switch() {
+  NR41_REG = 0x00;
+  NR42_REG = 0x37;
+  NR43_REG = 0x70;
+  NR44_REG = 0x80;
+}
+
 void sound_scroll(uint8_t len) {
   NR41_REG = 0x00;
   NR42_REG = 0x60 | len;

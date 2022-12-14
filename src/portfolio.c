@@ -13,6 +13,11 @@
 #include "pages/skills.h"
 #include <gbdk/platform.h>
 
+void handle_theme_switch() {
+  sound_switch();
+  theme_switch();
+}
+
 void main() {
   sound_init();
   theme_init();
@@ -27,7 +32,7 @@ void main() {
     uint8_t keys = joypad();
 
     // Allow switching theme by pressing Select
-    throttlekey(keys, J_SELECT, &theme_switch);
+    throttlekey(keys, J_SELECT, &handle_theme_switch);
 
     // Allow going back to the home header from any page
     // by pressing Start
