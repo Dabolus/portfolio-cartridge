@@ -15,7 +15,7 @@
 
 void main() {
   sound_init();
-  init_theme();
+  theme_init();
   // Load font in the background data (2 colors -> 1 bit per pixel)
   set_bkg_1bpp_data(0, 50, font_early_game_boy);
   init_page(HOME_HEADER);
@@ -27,7 +27,7 @@ void main() {
     uint8_t keys = joypad();
 
     // Allow switching theme by pressing Select
-    throttlekey(keys, J_SELECT, &switch_theme);
+    throttlekey(keys, J_SELECT, &theme_switch);
 
     // Allow going back to the home header from any page
     // by pressing Start

@@ -10,8 +10,8 @@ extern const palette_color_t rgb_theme_colors[4];
 
 extern palette_color_t current_theme[4];
 
-extern void switch_theme(void);
+extern void theme_switch(void);
 
-extern void init_theme(void);
+extern void theme_init(void);
 
 #endif
