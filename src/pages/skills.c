@@ -4,27 +4,36 @@
 #include "skills.h"
 #include "../../res/assets/phrases.h"
 #include "../../res/generated/skills.h"
+#include "../helpers/sound.h"
 #include "../helpers/text.h"
 #include "../helpers/utils.h"
 #include "handler.h"
 #include <gbdk/platform.h>
 
 void handle_skills_scroll_row_up() {
+  // Short scroll
+  sound_scroll(3);
   scroller_row_up();
   scroller_draw(skills_tiles);
 }
 
 void handle_skills_scroll_row_down() {
+  // Short scroll
+  sound_scroll(3);
   scroller_row_down();
   scroller_draw(skills_tiles);
 }
 
 void handle_skills_scroll_page_up() {
+  // Long scroll
+  sound_scroll(7);
   scroller_page_up();
   scroller_draw(skills_tiles);
 }
 
 void handle_skills_scroll_page_down() {
+  // Long scroll
+  sound_scroll(7);
   scroller_page_down();
   scroller_draw(skills_tiles);
 }

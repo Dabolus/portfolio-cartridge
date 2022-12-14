@@ -4,6 +4,7 @@
 #include "projects.h"
 #include "../../res/assets/phrases.h"
 #include "../../res/generated/projects.h"
+#include "../helpers/sound.h"
 #include "../helpers/text.h"
 #include "../helpers/utils.h"
 #include "handler.h"
@@ -33,11 +34,13 @@ void render_current_project() {
 }
 
 void handle_projects_navigation_prev() {
+  sound_bounce();
   current_project_index =
       (current_project_index + TOTAL_PROJECTS - 1) % TOTAL_PROJECTS;
   render_current_project();
 }
 void handle_projects_navigation_next() {
+  sound_bounce();
   current_project_index = (current_project_index + 1) % TOTAL_PROJECTS;
   render_current_project();
 }

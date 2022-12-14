@@ -4,6 +4,7 @@
 #include "home_menu.h"
 #include "../../res/assets/home_menu.h"
 #include "../../res/assets/phrases.h"
+#include "../helpers/sound.h"
 #include "../helpers/text.h"
 #include "../helpers/utils.h"
 #include "handler.h"
@@ -85,6 +86,8 @@ void update_menu_item(struct MenuItem *menu_item, BOOLEAN selected) {
 }
 
 void update_menu_option(uint8_t new_option) {
+  // Play bounce sound
+  sound_bounce();
   update_menu_item(&menu_items[current_menu_option], FALSE);
   current_menu_option = new_option;
   update_menu_item(&menu_items[current_menu_option], TRUE);
@@ -177,6 +180,8 @@ void home_menu_loop(uint8_t *current_loop_count, uint8_t keys) {
   }
 
   if (keys & J_A) {
+    // Play enter sound
+    sound_enter();
     // Current menu option + the number of extra pages we have defined
     // before the menu pages (i.e. `HOME_HEADER` and `HOME_MENU`)
     set_page(current_menu_option + 2);

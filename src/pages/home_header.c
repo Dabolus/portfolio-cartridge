@@ -7,6 +7,7 @@
 #include "../../res/assets/home_header.h"
 #include "../../res/assets/not.h"
 #include "../../res/assets/phrases.h"
+#include "../helpers/sound.h"
 #include "../helpers/text.h"
 #include "../helpers/utils.h"
 #include "handler.h"
@@ -132,6 +133,8 @@ void home_header_loop(uint8_t *current_loop_count, uint8_t keys) {
   }
 
   if (keys & (J_START | J_A)) {
+    // Play start sound
+    sound_start();
     set_page(HOME_MENU);
   }
 }

@@ -1,5 +1,6 @@
 #include "../res/fonts/font_early_game_boy.h"
 #include "helpers/fade.h"
+#include "helpers/sound.h"
 #include "helpers/text.h"
 #include "helpers/theme.h"
 #include "helpers/utils.h"
@@ -13,6 +14,7 @@
 #include <gbdk/platform.h>
 
 void main() {
+  sound_init();
   init_theme();
   // Load font in the background data (2 colors -> 1 bit per pixel)
   set_bkg_1bpp_data(0, 50, font_early_game_boy);
@@ -32,6 +34,11 @@ void main() {
     if (current_page != HOME_HEADER && (keys & J_START)) {
       set_page(HOME_HEADER);
       continue;
+    }
+
+    // Play back sound when pressing B while not on home header
+    if (current_page != HOME_HEADER && (keys & J_B)) {
+      sound_back();
     }
 
     switch (current_page) {

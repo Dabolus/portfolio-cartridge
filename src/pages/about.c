@@ -3,27 +3,36 @@
 
 #include "about.h"
 #include "../../res/assets/phrases.h"
+#include "../helpers/sound.h"
 #include "../helpers/text.h"
 #include "../helpers/utils.h"
 #include "handler.h"
 #include <gbdk/platform.h>
 
 void handle_about_me_scroll_row_up() {
+  // Short scroll
+  sound_scroll(3);
   scroller_row_up();
   scroller_draw(about_me_description);
 }
 
 void handle_about_me_scroll_row_down() {
+  // Short scroll
+  sound_scroll(3);
   scroller_row_down();
   scroller_draw(about_me_description);
 }
 
 void handle_about_me_scroll_page_up() {
+  // Long scroll
+  sound_scroll(7);
   scroller_page_up();
   scroller_draw(about_me_description);
 }
 
 void handle_about_me_scroll_page_down() {
+  // Long scroll
+  sound_scroll(7);
   scroller_page_down();
   scroller_draw(about_me_description);
 }
