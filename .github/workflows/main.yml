@@ -5,7 +5,8 @@ on:
       - main
     tags:
       - 'v*.*.*'
-
+  schedule:
+    - cron: '0 11 * * 0'
 jobs:
   build-roms:
     name: Build ROMs
@@ -39,8 +40,9 @@ jobs:
           path: build
       - name: Generate pre-release tag
         id: tag
-        # Only publish pre-release if the CI is running for a push of a branch and not for a tag
-        if: startsWith(github.ref, 'refs/heads/')
+        # Only publish pre-release if the CI is running for a
+        # cronjob or for a push of a branch, not for a tag
+        if: github.event_name == 'schedule' || startsWith(github.ref, 'refs/heads/')
         run: |
           echo "::set-output name=prerelease_id::$(date +"%Y-%m-%dT%H%M")"
       - name: Generate release notes
@@ -49,7 +51,11 @@ jobs:
           git fetch --unshallow
           latest_tag=$(git describe --tags --abbrev=0)
           echo "::set-output name=latest_tag::$latest_tag"
-          echo "::set-output name=release_notes::$(git log $latest_tag..HEAD --oneline --no-merges --pretty=format:'* %s in commit %h')"
+          if [ "${{ github.event_name }}" == "schedule" ]; then
+            echo "::set-output name=release_notes::Regenerate ROMs with freshly gathered data"
+          else
+            echo "::set-output name=release_notes::$(git --no-pager log $latest_tag..HEAD --oneline --no-merges --pretty=format:'* %s in commit %h')"
+          fi
       - name: Publish pre-release
         uses: softprops/action-gh-release@v1
         env:
