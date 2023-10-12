@@ -14,10 +14,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Use Node.js 18
+      - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
       - name: Install scripts dependencies
         run: npm --prefix scripts install
       - name: Install GBDK-2020
