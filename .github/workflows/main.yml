@@ -14,12 +14,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Use Node.js 20
-        uses: actions/setup-node@v3
+      - name: Use Bun 1.0.5
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: 20
-      - name: Install scripts dependencies
-        run: npm --prefix scripts install
+          bun-version: 1.0.5
+      - name: Install scriptrs dependencies
+        run: cd scripts && bun install && cd ..
       - name: Install GBDK-2020
         run: |
           wget https://github.com/gbdk-2020/gbdk-2020/releases/latest/download/gbdk-linux64.tar.gz
@@ -27,7 +27,7 @@ jobs:
           rm gbdk-linux64.tar.gz
           mv gbdk ~
       - name: Generate dynamic pages
-        run: npm --prefix scripts run generate
+        run: cd scripts && bun run generate && cd ..
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Build ROMs
