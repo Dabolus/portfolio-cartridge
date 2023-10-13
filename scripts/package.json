@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@dabolus/portfolio-data": "^0.18.0",
+    "@dabolus/portfolio-data": "^0.19.0",
     "dotenv": "^16.0.1",
     "js-yaml": "^4.1.0"
   },
