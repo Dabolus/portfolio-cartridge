@@ -5,8 +5,7 @@
     "moduleResolution": "node",
     "lib": ["es2021"],
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "types": ["bun-types"]
+    "esModuleInterop": true
   },
   "include": ["src"]
 }
