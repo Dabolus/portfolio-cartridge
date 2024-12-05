@@ -14,10 +14,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Use Bun 1.0.30
+      - name: Use Bun 1.1.38
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: 1.0.30
+          bun-version: 1.1.38
       - name: Install scripts dependencies
         run: cd scripts && bun install && cd ..
       - name: Install GBDK-2020
