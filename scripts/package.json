@@ -6,19 +6,21 @@
   "type": "module",
   "scripts": {
     "start": "bun run --watch src/index.ts",
-    "generate": "bun run src/index.ts"
+    "generate": "bun run src/index.ts",
+    "upgrade-interactive": "ncu --interactive --deep"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@dabolus/portfolio-data": "^0.23.0",
-    "dotenv": "^16.0.1",
+    "@dabolus/portfolio-data": "^0.24.0",
+    "dotenv": "^16.5.0",
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
-    "@types/bun": "^1.0.8",
-    "@types/js-yaml": "^4.0.5",
-    "typescript": "^4.7.4"
+    "@types/bun": "^1.2.10",
+    "@types/js-yaml": "^4.0.9",
+    "npm-check-updates": "^17.1.18",
+    "typescript": "^5.8.3"
   }
 }
