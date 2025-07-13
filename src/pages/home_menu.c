@@ -177,6 +177,7 @@ void home_menu_loop(uint8_t *current_loop_count, uint8_t keys) {
 
   if (keys & J_B) {
     set_page(HOME_HEADER);
+    music_start();
   }
 
   if (keys & J_A) {

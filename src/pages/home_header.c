@@ -133,7 +133,8 @@ void home_header_loop(uint8_t *current_loop_count, uint8_t keys) {
   }
 
   if (keys & (J_START | J_A)) {
-    // Play start sound
+    // Stop music and play start sound
+    music_stop();
     sound_start();
     set_page(HOME_MENU);
   }

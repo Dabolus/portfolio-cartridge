@@ -21,6 +21,7 @@ LCCFLAGS += $(LCCFLAGS_$(EXT)) # This adds the current platform specific LCC Fla
 LCCFLAGS += -Wl-j -Wm-yoA -Wm-ya4 -autobank -Wb-ext=.rel -Wb-v # MBC + Autobanking related flags
 LCCFLAGS += -debug -Wa-l -Wl-m -Wf--debug -Wl-y -Wl-w -Wm-yS # Debugging related flags
 LCCFLAGS += -v # Verboseness related flags
+LCCFLAGS += -Wl-l$(HUGEDRIVER_LIB) # Additional dependencies related flags
 
 # You can set the name of the ROM file here
 PROJECTNAME = portfolio
@@ -30,13 +31,15 @@ SRCDIR      = src
 OBJDIR      = obj/$(EXT)
 RESDIR      = res
 BINDIR      = build/$(EXT)
+EXTERNALDIR = external
 # See bottom of Makefile for directory auto-creation
 MKDIRS      = $(OBJDIR) $(BINDIR) $(shell find $(SRCDIR)/* $(RESDIR)/* -type d | sed "s/$(subst /,\/,$(SRCDIR))/$(subst /,\/,$(OBJDIR))/" | sed "s/$(subst /,\/,$(RESDIR))/$(subst /,\/,$(OBJDIR))/")
 
-BINS	    = $(OBJDIR)/$(PROJECTNAME).$(EXT)
-CSOURCES    = $(shell find $(SRCDIR) $(RESDIR) -name "*.c" | cut -c5-)
-ASMSOURCES    = $(shell find $(SRCDIR) $(RESDIR) -name "*.s" | cut -c5-)
-OBJS       = $(patsubst %.c,$(OBJDIR)/%.o,$(CSOURCES)) $(patsubst %.s,$(OBJDIR)/%.o,$(ASMSOURCES))
+BINS	          = $(OBJDIR)/$(PROJECTNAME).$(EXT)
+CSOURCES        = $(shell find $(SRCDIR) $(RESDIR) -name "*.c" | cut -c5-)
+ASMSOURCES      = $(shell find $(SRCDIR) $(RESDIR) -name "*.s" | cut -c5-)
+OBJS            = $(patsubst %.c,$(OBJDIR)/%.o,$(CSOURCES)) $(patsubst %.s,$(OBJDIR)/%.o,$(ASMSOURCES))
+HUGEDRIVER_LIB  = $(EXTERNALDIR)/hUGEDriver/gbdk/hUGEDriver.lib
 
 # Builds all targets sequentially
 all: $(TARGETS)
@@ -63,7 +66,7 @@ $(OBJDIR)/%.s:	$(SRCDIR)/%.c
 	$(LCC) $(CFLAGS) -S -o $@ $<
 
 # Link the compiled object files into a .gb ROM file
-$(BINS):	$(OBJS)
+$(BINS):	$(OBJS) $(HUGEDRIVER_TARGET)
 	$(LCC) $(LCCFLAGS) $(CFLAGS) -o $(BINDIR)/$(PROJECTNAME).$(EXT) $(OBJS)
 
 clean:

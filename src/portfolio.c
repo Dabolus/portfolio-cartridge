@@ -25,6 +25,7 @@ void main() {
   set_bkg_1bpp_data(0, 50, font_early_game_boy);
   init_page(HOME_HEADER);
   SHOW_BKG;
+  music_start();
 
   uint8_t current_loop_count = 0;
 
@@ -38,6 +39,7 @@ void main() {
     // by pressing Start
     if (current_page != HOME_HEADER && (keys & J_START)) {
       set_page(HOME_HEADER);
+      music_start();
       continue;
     }
 

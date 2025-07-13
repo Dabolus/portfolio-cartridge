@@ -2,7 +2,17 @@
 #define HELPERS_SOUND_C
 
 #include "sound.h"
+#include "../../external/hUGEDriver/include/hUGEDriver.h"
+#include "../../res/assets/music_main_menu.h"
 #include <gbdk/platform.h>
+
+#define RESET_AUDIO_CHANNEL(channel)                                           \
+  do {                                                                         \
+    NR##channel##1_REG = 0x00;                                                 \
+    NR##channel##2_REG = 0x00;                                                 \
+    NR##channel##3_REG = 0x00;                                                 \
+    NR##channel##4_REG = 0x00;                                                 \
+  } while (0)
 
 void sound_init() {
 #ifdef NINTENDO
@@ -73,6 +83,27 @@ void sound_back() {
   NR42_REG = 0xF1;
   NR43_REG = 0x30;
   NR44_REG = 0xC0;
+#endif
+}
+
+void music_start() {
+#ifdef NINTENDO
+  // Load the main menu music in memory
+  hUGE_init(&music_main_menu);
+  // Add a VBL that plays the music in loop
+  add_VBL(hUGE_dosound);
+#endif
+}
+
+void music_stop() {
+#ifdef NINTENDO
+  // Remove the VBL that plays the music in loop
+  remove_VBL(hUGE_dosound);
+  // Reset all audio channels
+  RESET_AUDIO_CHANNEL(1);
+  RESET_AUDIO_CHANNEL(2);
+  RESET_AUDIO_CHANNEL(3);
+  RESET_AUDIO_CHANNEL(4);
 #endif
 }
 

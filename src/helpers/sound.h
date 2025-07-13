@@ -18,4 +18,8 @@ extern void sound_bounce(void);
 
 extern void sound_back(void);
 
+extern void music_start(void);
+
+extern void music_stop(void);
+
 #endif
