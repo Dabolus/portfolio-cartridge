@@ -15,9 +15,9 @@ extern const unsigned char github_data[64];
 extern const unsigned char github_tiles[4];
 extern const palette_color_t github_color;
 
-extern const unsigned char twitter_data[64];
-extern const unsigned char twitter_tiles[4];
-extern const palette_color_t twitter_color;
+extern const unsigned char x_data[64];
+extern const unsigned char x_tiles[4];
+extern const palette_color_t x_color;
 
 extern const unsigned char telegram_data[64];
 extern const unsigned char telegram_tiles[4];

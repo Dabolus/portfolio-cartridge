@@ -37,14 +37,14 @@ void contacts_setup() {
   set_sprite_palette_entry(1, 3, RGB8(0, 0, 0));
   set_sprite_tiles(4, 44, 2, 2, github_tiles);
   set_bkg_tiles(3, 6, ARRAY_LEN(dabolus), 1, dabolus);
-  // Twitter
-  set_sprite_data(8, 4, twitter_data);
+  // Twitter/X
+  set_sprite_data(8, 4, x_data);
   for (uint8_t i = 0; i < 4; ++i) {
     set_sprite_prop(i + 8, 2);
   }
-  set_sprite_palette_entry(2, 2, twitter_color);
+  set_sprite_palette_entry(2, 2, x_color);
   set_sprite_palette_entry(2, 3, RGB8(0, 0, 0));
-  set_sprite_tiles(4, 60, 2, 2, twitter_tiles);
+  set_sprite_tiles(4, 60, 2, 2, x_tiles);
   set_bkg_tiles(3, 8, ARRAY_LEN(dabolus), 1, dabolus);
   // Telegram
   set_sprite_data(12, 4, telegram_data);
