@@ -13,14 +13,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@dabolus/portfolio-data": "^0.24.0",
-    "dotenv": "^16.5.0",
+    "@dabolus/portfolio-data": "^0.25.0",
+    "dotenv": "^17.2.0",
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
-    "@types/bun": "^1.2.10",
+    "@types/bun": "^1.2.18",
     "@types/js-yaml": "^4.0.9",
-    "npm-check-updates": "^17.1.18",
+    "npm-check-updates": "^18.0.1",
     "typescript": "^5.8.3"
   }
 }
