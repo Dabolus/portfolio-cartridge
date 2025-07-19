@@ -374,10 +374,10 @@ static const hUGEDutyInstr_t duty_instruments[] = {
     {8, 128, 240, 0, 128},
     {8, 192, 240, 0, 128},
 };
-static const hUGEWaveInstr_t wave_instruments[] = {{}};
-static const hUGENoiseInstr_t noise_instruments[] = {{}};
+static const hUGEWaveInstr_t wave_instruments[] = {{0}};
+static const hUGENoiseInstr_t noise_instruments[] = {{0}};
 
-static const unsigned char waves[] = {{}};
+static const unsigned char waves[] = {{0}};
 
 const hUGESong_t music_main_menu = {7,
                                     &order_cnt,
