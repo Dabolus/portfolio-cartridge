@@ -25,7 +25,7 @@ uint8_t current_text_id;
 BOOLEAN is_deleting;
 BOOLEAN is_select_pressed;
 
-void home_header_setup() {
+void home_header_setup(void) {
   // Initialize state variables
   current_text_x = 0;
   current_text_y = 0;

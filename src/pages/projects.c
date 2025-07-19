@@ -13,7 +13,7 @@
 struct Project projects_info[TOTAL_PROJECTS];
 uint8_t current_project_index = 0;
 
-void render_current_project() {
+void render_current_project(void) {
   // Icon
   set_sprite_data(0, 4, projects_info[current_project_index].icon_data);
   for (uint8_t i = 0; i < 4; i++) {
@@ -33,19 +33,19 @@ void render_current_project() {
   drawtext(1, 15, projects_info[current_project_index].tags_data);
 }
 
-void handle_projects_navigation_prev() {
+void handle_projects_navigation_prev(void) {
   sound_bounce();
   current_project_index =
       (current_project_index + TOTAL_PROJECTS - 1) % TOTAL_PROJECTS;
   render_current_project();
 }
-void handle_projects_navigation_next() {
+void handle_projects_navigation_next(void) {
   sound_bounce();
   current_project_index = (current_project_index + 1) % TOTAL_PROJECTS;
   render_current_project();
 }
 
-void projects_setup() {
+void projects_setup(void) {
   set_bkg_tiles(1, 1, ARRAY_LEN(projects), 1, projects);
   drawframe(0, 3, DEVICE_SCREEN_WIDTH, DEVICE_SCREEN_HEIGHT - 3, 0x32, 0x33,
             0x34, 0x35, 0x36, 0x37, 0x38, 0x39);
@@ -66,7 +66,7 @@ void projects_loop(uint8_t *current_loop_count, uint8_t keys) {
   throttlekey(keys, J_RIGHT | J_DOWN, &handle_projects_navigation_next);
 }
 
-void projects_unload() {
+void projects_unload(void) {
   // Hide the sprite layer
   HIDE_SPRITES;
   // Hide the sprites used by the projects icons

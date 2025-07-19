@@ -14,7 +14,7 @@ void cleararea(uint8_t x, uint8_t y, uint8_t w, uint8_t h) {
   fill_bkg_rect(x, y, w, h, 0x00);
 }
 
-void clearscreen() {
+void clearscreen(void) {
   cleararea(0, 0, DEVICE_SCREEN_WIDTH, DEVICE_SCREEN_HEIGHT);
 }
 
@@ -87,14 +87,14 @@ void scroller_init(struct ScrollerConfig *config) {
   scroller_current_row = 0;
 }
 
-void scroller_row_up() {
+void scroller_row_up(void) {
   if (scroller_current_row == 0) {
     return;
   }
   --scroller_current_row;
 }
 
-void scroller_row_down() {
+void scroller_row_down(void) {
   if (scroller_current_row ==
       scroller_config.content_total_rows - scroller_config.height) {
     return;
@@ -102,7 +102,7 @@ void scroller_row_down() {
   ++scroller_current_row;
 }
 
-void scroller_page_up() {
+void scroller_page_up(void) {
   if ((int8_t)scroller_current_row - scroller_config.height < 0) {
     scroller_current_row = 0;
     return;
@@ -110,7 +110,7 @@ void scroller_page_up() {
   scroller_current_row -= scroller_config.height;
 }
 
-void scroller_page_down() {
+void scroller_page_down(void) {
   scroller_current_row += scroller_config.height;
   if (scroller_current_row >
       scroller_config.content_total_rows - scroller_config.height) {

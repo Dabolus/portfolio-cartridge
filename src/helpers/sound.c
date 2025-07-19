@@ -14,7 +14,7 @@
     NR##channel##4_REG = 0x00;                                                 \
   } while (0)
 
-void sound_init() {
+void sound_init(void) {
 #ifdef NINTENDO
   // NOTE: these registers must be in this specific order!
   // 1000 0000 in binary: turns on sound
@@ -29,7 +29,7 @@ void sound_init() {
 #endif
 }
 
-void sound_start() {
+void sound_start(void) {
 #ifdef NINTENDO
   NR10_REG = 0x00;
   NR11_REG = 0xC2;
@@ -39,7 +39,7 @@ void sound_start() {
 #endif
 }
 
-void sound_enter() {
+void sound_enter(void) {
 #ifdef NINTENDO
   NR10_REG = 0x00;
   NR11_REG = 0x80;
@@ -49,7 +49,7 @@ void sound_enter() {
 #endif
 }
 
-void sound_switch() {
+void sound_switch(void) {
 #ifdef NINTENDO
   NR41_REG = 0x00;
   NR42_REG = 0x37;
@@ -67,7 +67,7 @@ void sound_scroll(uint8_t len) {
 #endif
 }
 
-void sound_bounce() {
+void sound_bounce(void) {
 #ifdef NINTENDO
   NR10_REG = 0x77;
   NR11_REG = 0xC0;
@@ -77,7 +77,7 @@ void sound_bounce() {
 #endif
 }
 
-void sound_back() {
+void sound_back(void) {
 #ifdef NINTENDO
   NR41_REG = 0x1F;
   NR42_REG = 0xF1;
@@ -86,7 +86,7 @@ void sound_back() {
 #endif
 }
 
-void music_start() {
+void music_start(void) {
 #ifdef NINTENDO
   // Load the main menu music in memory
   hUGE_init(&music_main_menu);
@@ -95,7 +95,7 @@ void music_start() {
 #endif
 }
 
-void music_stop() {
+void music_stop(void) {
 #ifdef NINTENDO
   // Remove the VBL that plays the music in loop
   remove_VBL(hUGE_dosound);

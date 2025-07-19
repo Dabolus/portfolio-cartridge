@@ -37,13 +37,13 @@ extern void scroller_draw(const unsigned char content[][20]);
 
 extern void scroller_init(struct ScrollerConfig *config);
 
-extern void scroller_row_up();
+extern void scroller_row_up(void);
 
-extern void scroller_row_down();
+extern void scroller_row_down(void);
 
-extern void scroller_page_up();
+extern void scroller_page_up(void);
 
-extern void scroller_page_down();
+extern void scroller_page_down(void);
 
 extern void set_sprite_tiles(uint8_t x, uint8_t y, uint8_t w, uint8_t h,
                              const uint8_t *tiles);

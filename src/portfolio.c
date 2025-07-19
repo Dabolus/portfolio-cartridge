@@ -13,12 +13,12 @@
 #include "pages/skills.h"
 #include <gbdk/platform.h>
 
-void handle_theme_switch() {
+void handle_theme_switch(void) {
   sound_switch();
   theme_switch();
 }
 
-void main() {
+void main(void) {
   sound_init();
   theme_init();
   // Load font in the background data (2 colors -> 1 bit per pixel)

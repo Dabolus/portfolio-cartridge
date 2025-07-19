@@ -9,7 +9,7 @@
 #include "handler.h"
 #include <gbdk/platform.h>
 
-void contacts_setup() {
+void contacts_setup(void) {
   set_bkg_tiles(1, 1, ARRAY_LEN(contacts), 1, contacts);
   fill_bkg_rect(0, 3, DEVICE_SCREEN_WIDTH, 1, 0x32);
 
@@ -97,7 +97,7 @@ void contacts_loop(uint8_t *current_loop_count, uint8_t keys) {
   }
 }
 
-void contacts_unload() {
+void contacts_unload(void) {
   // Hide the sprite layer
   HIDE_SPRITES;
   // Hide all the socials tiles (we use last Facebook tile as limit as it is the

@@ -23,7 +23,7 @@ void set_theme(palette_color_t *theme) {
   }
 }
 
-void theme_switch() {
+void theme_switch(void) {
   if (DEVICE_SUPPORTS_COLOR) {
     // Replace the colors in the default palette with the ones from the theme in
     // the proper order
@@ -44,7 +44,7 @@ void theme_switch() {
   }
 }
 
-void theme_init() {
+void theme_init(void) {
   if (DEVICE_SUPPORTS_COLOR) {
     // Set the palette to be from the lightest to the darkest color (aka light
     // theme)

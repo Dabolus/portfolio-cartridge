@@ -93,21 +93,21 @@ void update_menu_option(uint8_t new_option) {
   update_menu_item(&menu_items[current_menu_option], TRUE);
 }
 
-void handle_menu_navigation_up() {
+void handle_menu_navigation_up(void) {
   update_menu_option((current_menu_option + MENU_COLUMNS) % MENU_ITEMS);
 }
-void handle_menu_navigation_right() {
+void handle_menu_navigation_right(void) {
   update_menu_option((current_menu_option + 1) % MENU_ITEMS);
 }
-void handle_menu_navigation_down() {
+void handle_menu_navigation_down(void) {
   update_menu_option((current_menu_option + MENU_ITEMS - MENU_COLUMNS) %
                      MENU_ITEMS);
 }
-void handle_menu_navigation_left() {
+void handle_menu_navigation_left(void) {
   update_menu_option((current_menu_option + MENU_ITEMS - 1) % MENU_ITEMS);
 }
 
-void home_menu_setup() {
+void home_menu_setup(void) {
   // Load the frame data
   set_bkg_data(50, 16, home_menu_frame_data);
 
@@ -194,7 +194,7 @@ void home_menu_loop(uint8_t *current_loop_count, uint8_t keys) {
   throttlekey(keys, J_LEFT, &handle_menu_navigation_left);
 }
 
-void home_menu_unload() {
+void home_menu_unload(void) {
   // Hide the sprite layer
   HIDE_SPRITES;
   // Hide the menu icons tiles

@@ -10,35 +10,35 @@
 #include "handler.h"
 #include <gbdk/platform.h>
 
-void handle_skills_scroll_row_up() {
+void handle_skills_scroll_row_up(void) {
   // Short scroll
   sound_scroll(3);
   scroller_row_up();
   scroller_draw(skills_tiles);
 }
 
-void handle_skills_scroll_row_down() {
+void handle_skills_scroll_row_down(void) {
   // Short scroll
   sound_scroll(3);
   scroller_row_down();
   scroller_draw(skills_tiles);
 }
 
-void handle_skills_scroll_page_up() {
+void handle_skills_scroll_page_up(void) {
   // Long scroll
   sound_scroll(7);
   scroller_page_up();
   scroller_draw(skills_tiles);
 }
 
-void handle_skills_scroll_page_down() {
+void handle_skills_scroll_page_down(void) {
   // Long scroll
   sound_scroll(7);
   scroller_page_down();
   scroller_draw(skills_tiles);
 }
 
-void skills_setup() {
+void skills_setup(void) {
   set_bkg_tiles(1, 1, ARRAY_LEN(skills), 1, skills);
   fill_bkg_rect(0, PAGE_HEADER_HEIGHT - 1, DEVICE_SCREEN_WIDTH, 1, 0x32);
   set_bkg_1bpp_data(51, ARRAY_LEN(skills_data) / 8, skills_data);
