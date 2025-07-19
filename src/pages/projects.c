@@ -3,7 +3,7 @@
 
 #include "projects.h"
 #include "../../res/assets/phrases.h"
-#include "../../res/generated/projects.h"
+#include "../../res/generated/generated_projects.h"
 #include "../helpers/sound.h"
 #include "../helpers/text.h"
 #include "../helpers/utils.h"

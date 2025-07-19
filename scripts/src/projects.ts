@@ -16,7 +16,7 @@ export const generateProjects = async () => {
   const sourceFile = `#ifndef GENERATED_PROJECTS_C
 #define GENERATED_PROJECTS_C
 
-#include "projects.h"
+#include "generated_projects.h"
 #include <gbdk/platform.h>
 
 ${projectsData
@@ -114,6 +114,6 @@ extern void get_projects(struct Project* projects);
 `;
   const outputPath = path.join(__dirname, '..', '..', 'res', 'generated');
   await fs.mkdir(outputPath, { recursive: true });
-  await fs.writeFile(path.join(outputPath, 'projects.c'), sourceFile);
-  await fs.writeFile(path.join(outputPath, 'projects.h'), headerFile);
+  await fs.writeFile(path.join(outputPath, 'generated_projects.c'), sourceFile);
+  await fs.writeFile(path.join(outputPath, 'generated_projects.h'), headerFile);
 };

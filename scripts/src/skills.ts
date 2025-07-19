@@ -55,7 +55,7 @@ export const generateSkills = async () => {
   const sourceFile = `#ifndef GENERATED_SKILLS_C
 #define GENERATED_SKILLS_C
 
-#include "skills.h"
+#include "generated_skills.h"
 #include <gbdk/platform.h>
 
 const unsigned char skills_data[${allData.length}] = {${allData.join(', ')}};
@@ -82,6 +82,6 @@ extern const unsigned char skills_tiles[${tiles.length}][${screenWidth}];
 `;
   const outputPath = path.join(__dirname, '..', '..', 'res', 'generated');
   await fs.mkdir(outputPath, { recursive: true });
-  await fs.writeFile(path.join(outputPath, 'skills.c'), sourceFile);
-  await fs.writeFile(path.join(outputPath, 'skills.h'), headerFile);
+  await fs.writeFile(path.join(outputPath, 'generated_skills.c'), sourceFile);
+  await fs.writeFile(path.join(outputPath, 'generated_skills.h'), headerFile);
 };

@@ -3,7 +3,7 @@
 
 #include "skills.h"
 #include "../../res/assets/phrases.h"
-#include "../../res/generated/skills.h"
+#include "../../res/generated/generated_skills.h"
 #include "../helpers/sound.h"
 #include "../helpers/text.h"
 #include "../helpers/utils.h"
